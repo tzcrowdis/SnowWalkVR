@@ -6,25 +6,19 @@ public class ForestController : MonoBehaviour
 {
     public bool changeEnter;
     public bool changeExit;
-    private float d = 100f;
-    private Vector3 newPos;
+    float d = 100f;
 
-    public GameObject[] grid;
+    public List<GameObject> grid = new List<GameObject>();
 
-    public Transform oldGrid;
-    public Transform newGrid;
+    public Transform oldForest;
+    public Transform currentForest;
+
+    GameObject snowPlaneResource;
 
     void Start()
     {
         changeEnter = false;
         changeExit = false;
-        oldGrid = GameObject.Find("woods0").transform;
-
-        grid = new GameObject[9];
-        for (int i = 0; i < grid.Length; i++)
-        {
-            grid[i] = GameObject.Find(string.Format("woods{0}", i));
-        }
     }
 
     void Update()
@@ -37,9 +31,9 @@ public class ForestController : MonoBehaviour
         }
         
         //updates the grid
-        if (changeEnter == true && changeExit == true)
+        if (changeEnter & changeExit)
         {
-            infWalk(oldGrid.position.x, oldGrid.position.z, newGrid.position.x, newGrid.position.z);
+            infWalk(oldForest.position.x, oldForest.position.z, currentForest.position.x, currentForest.position.z);
             changeEnter = false;
             changeExit = false;
         }
@@ -50,16 +44,21 @@ public class ForestController : MonoBehaviour
     {
         if (newX - X == d)
         {
-            for (int i = 0; i < grid.Length; i++)
+            foreach (GameObject plane in grid)
             {
-                if (grid[i].transform.position.x == X - d)
-                    grid[i].transform.position += new Vector3(3*d, 0, 0);
+                if (plane.transform.position.x == X - d)
+                {
+                    plane.transform.position += new Vector3(3 * d, 0, 0);
+
+                    //instead remove from list and destroy plane
+                    //spawn new plane at position and add to grid list
+                } 
             }
         }
 
         if (newX - X == -d)
         {
-            for (int i = 0; i < grid.Length; i++)
+            for (int i = 0; i < grid.Count; i++)
             {
                 if (grid[i].transform.position.x == X + d)
                     grid[i].transform.position -= new Vector3(3*d, 0, 0);
@@ -68,7 +67,7 @@ public class ForestController : MonoBehaviour
 
         if (newZ - Z == d)
         {
-            for (int i = 0; i < grid.Length; i++)
+            for (int i = 0; i < grid.Count; i++)
             {
                 if (grid[i].transform.position.z == Z - d)
                     grid[i].transform.position += new Vector3(0, 0, 3*d);
@@ -77,7 +76,7 @@ public class ForestController : MonoBehaviour
 
         if (newZ - Z == -d)
         {
-            for (int i = 0; i < grid.Length; i++)
+            for (int i = 0; i < grid.Count; i++)
             {
                 if (grid[i].transform.position.z == Z + d)
                     grid[i].transform.position -= new Vector3(0, 0, 3*d);
