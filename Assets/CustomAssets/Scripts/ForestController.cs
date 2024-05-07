@@ -6,7 +6,7 @@ public class ForestController : MonoBehaviour
 {
     public bool changeEnter;
     public bool changeExit;
-    float d = 100f; //side length of snow plane
+    float d = 50f; //side length of snow plane
 
     public List<GameObject> grid;
 
