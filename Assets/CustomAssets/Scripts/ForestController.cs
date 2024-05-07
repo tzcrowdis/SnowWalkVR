@@ -6,9 +6,9 @@ public class ForestController : MonoBehaviour
 {
     public bool changeEnter;
     public bool changeExit;
-    float d = 100f;
+    float d = 100f; //side length of snow plane
 
-    public List<GameObject> grid = new List<GameObject>();
+    public List<GameObject> grid;
 
     public Transform oldForest;
     public Transform currentForest;
@@ -19,6 +19,28 @@ public class ForestController : MonoBehaviour
     {
         changeEnter = false;
         changeExit = false;
+
+        snowPlaneResource = Resources.Load("SnowPlane") as GameObject;
+
+        grid = new List<GameObject>()
+        {
+            Instantiate(snowPlaneResource, new Vector3(0f, 0f, 0f), Quaternion.identity),
+            Instantiate(snowPlaneResource, new Vector3(d, 0f, 0f), Quaternion.identity),
+            Instantiate(snowPlaneResource, new Vector3(-d, 0f, 0f), Quaternion.identity),
+
+            Instantiate(snowPlaneResource, new Vector3(0f, 0f, d), Quaternion.identity),
+            Instantiate(snowPlaneResource, new Vector3(d, 0f, d), Quaternion.identity),
+            Instantiate(snowPlaneResource, new Vector3(-d, 0f, d), Quaternion.identity),
+
+            Instantiate(snowPlaneResource, new Vector3(0f, 0f, -d), Quaternion.identity),
+            Instantiate(snowPlaneResource, new Vector3(d, 0f, -d), Quaternion.identity),
+            Instantiate(snowPlaneResource, new Vector3(-d, 0f, -d), Quaternion.identity),
+        };
+
+        oldForest = grid[0].transform;
+
+        foreach (GameObject plane in grid)
+            plane.GetComponent<PlaneController>().PopulatePlane("UniformForest");
     }
 
     void Update()
@@ -44,15 +66,10 @@ public class ForestController : MonoBehaviour
     {
         if (newX - X == d)
         {
-            foreach (GameObject plane in grid)
+            for (int i = 0; i < grid.Count; i++)
             {
-                if (plane.transform.position.x == X - d)
-                {
-                    plane.transform.position += new Vector3(3 * d, 0, 0);
-
-                    //instead remove from list and destroy plane
-                    //spawn new plane at position and add to grid list
-                } 
+                if (grid[i].transform.position.x == X - d)
+                    grid[i].transform.position += new Vector3(3 * d, 0, 0);
             }
         }
 
@@ -82,5 +99,8 @@ public class ForestController : MonoBehaviour
                     grid[i].transform.position -= new Vector3(0, 0, 3*d);
             }
         }
+
+        //keep track of planes that were moved
+        //repopulate them by calling function in plane controller
     }
 }
