@@ -1,12 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerSoundController : MonoBehaviour
 {
-    List<AudioClip> walking;
+    List<AudioClip> walking = new List<AudioClip>();
+    AudioSource[] sources;
 
-    AudioSource source;
+    Transform player;
+    public float timeBetweenSteps;
+    int stepChoice;
+    float stepTime = 0f;
+
+    public float distBtwnSteps;
+    Vector3 previousPosition;
     
     void Start()
     {
@@ -18,22 +26,41 @@ public class PlayerSoundController : MonoBehaviour
                 walking.Add(Resources.Load($"SnowWalking/Footsteps_Snow_Walk_{i}") as AudioClip);
         }
         
-        source = GetComponent<AudioSource>();
+        sources = GetComponents<AudioSource>();
 
-        Debug.Log(walking.Count);
+        //player = GetComponent<CharacterController>();
+        //player = transform.parent;
+
+        sources[1].Play();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        //if moving
-        //
-
-        if (Input.GetKeyDown(KeyCode.F))
+        //velocity
+        /*
+        if (player.velocity.magnitude > 0)
         {
-            int r = Random.Range(0, walking.Count);
-            source.PlayOneShot(walking[r]);
+            stepTime += Time.deltaTime;
+            if (stepTime > timeBetweenSteps)
+            {
+                stepChoice = Random.Range(0, walking.Count);
+                source.PlayOneShot(walking[stepChoice]);
+                stepTime = 0f;
+            }
         }
-            
+        else
+        {
+            stepTime = 0f;
+        }
+        */
+
+        //distance
+        if (Vector3.Distance(previousPosition, transform.position) > distBtwnSteps)
+        {
+            stepChoice = Random.Range(0, walking.Count);
+            sources[0].PlayOneShot(walking[stepChoice]);
+
+            previousPosition = transform.position;
+        }
     }
 }
