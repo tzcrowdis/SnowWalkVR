@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlaneController : MonoBehaviour
@@ -32,12 +33,15 @@ public class PlaneController : MonoBehaviour
             case "UniformForest":
                 UniformForest();
                 break;
+            case "Clear":
+                ClearPlane();
+                break;
         }
     }
 
     void UniformForest()
     {
-        float density = 400f;
+        float density = 300f;
 
         float x;
         float z;
@@ -62,7 +66,13 @@ public class PlaneController : MonoBehaviour
             tree.transform.localPosition = new Vector3(x, 0, z);
             tree.transform.Rotate(0f, Random.Range(0f, 360f), 0f);
             tree.transform.localScale *= 1 / transform.localScale.x;
-            tree.transform.localScale += new Vector3(Random.Range(-0.1f, 0.1f), Random.Range(-0.1f, 0.1f), Random.Range(-0.1f, 0.1f));
+            tree.transform.localScale += new Vector3(Random.Range(-0.1f, 0.5f), Random.Range(-0.1f, 1f), Random.Range(-0.1f, 0.5f));
         }
+    }
+
+    void ClearPlane()
+    {
+        foreach (Transform child in transform)
+            Destroy(child.gameObject);
     }
 }

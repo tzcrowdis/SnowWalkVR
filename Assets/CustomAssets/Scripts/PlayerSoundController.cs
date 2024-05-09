@@ -8,10 +8,8 @@ public class PlayerSoundController : MonoBehaviour
     List<AudioClip> walking = new List<AudioClip>();
     AudioSource[] sources;
 
-    Transform player;
     public float timeBetweenSteps;
     int stepChoice;
-    float stepTime = 0f;
 
     public float distBtwnSteps;
     Vector3 previousPosition;
@@ -28,33 +26,12 @@ public class PlayerSoundController : MonoBehaviour
         
         sources = GetComponents<AudioSource>();
 
-        //player = GetComponent<CharacterController>();
-        //player = transform.parent;
-
         sources[1].Play();
     }
 
     void Update()
     {
-        //velocity
-        /*
-        if (player.velocity.magnitude > 0)
-        {
-            stepTime += Time.deltaTime;
-            if (stepTime > timeBetweenSteps)
-            {
-                stepChoice = Random.Range(0, walking.Count);
-                source.PlayOneShot(walking[stepChoice]);
-                stepTime = 0f;
-            }
-        }
-        else
-        {
-            stepTime = 0f;
-        }
-        */
-
-        //distance
+        //footstep sounds based on distance
         if (Vector3.Distance(previousPosition, transform.position) > distBtwnSteps)
         {
             stepChoice = Random.Range(0, walking.Count);
