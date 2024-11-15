@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 299639868}
-  m_IndirectSpecularColor: {r: 0.08067995, g: 0.082945876, b: 0.08292385, a: 1}
+  m_IndirectSpecularColor: {r: 0.05907664, g: 0.0607374, b: 0.06072155, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -159,13 +159,13 @@ Light:
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 2
+    m_Type: 1
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
     m_Bias: 0.05
     m_NormalBias: 0.4
-    m_NearPlane: 0.2
+    m_NearPlane: 1
     m_CullingMatrixOverride:
       e00: 1
       e01: 0
@@ -279,6 +279,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d1a3d10f2c181647b933569143fd71f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startleDistance: 10
+  flightAltitude: 25
+  flightSpeed: 10
+  takeoffSpeed: 0.2
+  takeoffAngle: -45
 --- !u!1001 &452463679
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5330,15 +5335,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 2f64d96855669704aacddfbb97005d2d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.195
+      value: -0.34
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2f64d96855669704aacddfbb97005d2d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.776
+      value: 0.39
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2f64d96855669704aacddfbb97005d2d, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 3.7769597
+      value: 10.46
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2f64d96855669704aacddfbb97005d2d, type: 3}
       propertyPath: m_LocalRotation.w
