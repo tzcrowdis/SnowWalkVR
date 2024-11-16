@@ -41,7 +41,7 @@ public class PlaneController : MonoBehaviour
 
     void UniformForest()
     {
-        float density = 300f;
+        float density = player.gameObject.GetComponent<ForestController>().uniformForestDensity;
 
         float x;
         float z;

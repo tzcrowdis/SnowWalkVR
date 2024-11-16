@@ -13,6 +13,8 @@ public class ForestController : MonoBehaviour
     public Transform oldForest;
     public Transform currentForest;
 
+    public float uniformForestDensity;
+
     GameObject snowPlaneResource;
 
     void Start()
