@@ -14,9 +14,6 @@ public class PlaneController : MonoBehaviour
     public float length;
 
     public Transform player;
-
-    public NavMeshSurface surface;
-    NavMeshLink link;
     
     void Awake()
     {
@@ -34,58 +31,23 @@ public class PlaneController : MonoBehaviour
         
     }
 
-    public void PopulatePlane(string forestType)
+    public void PopulatePlane(ForestController.ForestType forest)
     {
-        switch (forestType)
+        switch (forest)
         {
-            case "UniformForest":
+            case ForestController.ForestType.Uniform:
                 UniformForest();
                 break;
-            case "Clear":
+            case ForestController.ForestType.Clear:
                 ClearPlane();
                 break;
         }
-
-        BuildForestNavMesh();
-    }
-
-    void BuildForestNavMesh()
-    {
-        // surface on individual planes
-        surface = gameObject.AddComponent<NavMeshSurface>();
-        surface.collectObjects = CollectObjects.Children;
-        surface.BuildNavMesh();
-
-        float agentRadius = 1f; // agent types radius (plus a little)
-
-        // link between planes
-        link = gameObject.AddComponent<NavMeshLink>();
-        link.width = length;
-        link.costModifier = 0;
-        link.startPoint = new Vector3(length / 2 - agentRadius, 0, 0);
-        link.endPoint = new Vector3(length / 2 + agentRadius, 0, 0);
-
-        link = gameObject.AddComponent<NavMeshLink>();
-        link.width = length;
-        link.costModifier = 0;
-        link.startPoint = new Vector3(-length / 2 - agentRadius, 0, 0);
-        link.endPoint = new Vector3(-length / 2 + agentRadius, 0, 0);
-
-        link = gameObject.AddComponent<NavMeshLink>();
-        link.width = length;
-        link.costModifier = 0;
-        link.startPoint = new Vector3(0, 0, length / 2 - agentRadius);
-        link.endPoint = new Vector3(0, 0, length / 2 + agentRadius);
-
-        link = gameObject.AddComponent<NavMeshLink>();
-        link.width = length;
-        link.costModifier = 0;
-        link.startPoint = new Vector3(0, 0, -length / 2 - agentRadius);
-        link.endPoint = new Vector3(0, 0, -length / 2 + agentRadius);
     }
 
     void UniformForest()
     {
+        ClearPlane();
+        
         float density = player.gameObject.GetComponent<ForestController>().uniformForestDensity;
 
         float x;

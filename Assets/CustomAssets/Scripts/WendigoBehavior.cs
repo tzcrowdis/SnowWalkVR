@@ -17,7 +17,4 @@ public class WendigoBehavior : MonoBehaviour
     {
         agent.destination = player.position;
     }
-
-    // Fix for awkward movement between planes:
-    // https://www.reddit.com/r/Unity3D/comments/f9i7wv/my_agents_walk_faster_when_going_through/
 }

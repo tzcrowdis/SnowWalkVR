@@ -1,21 +1,32 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Unity.AI.Navigation;
 
 public class ForestController : MonoBehaviour
 {
-    public bool changeEnter;
-    public bool changeExit;
-    public float d = 50f; //side length of snow plane
+    [HideInInspector]
+    public bool changeEnter, changeExit;
 
+    [HideInInspector]
     public List<GameObject> grid;
 
-    public Transform oldForest;
-    public Transform currentForest;
+    [HideInInspector]
+    public Transform oldForest, currentForest;
 
+    public float d = 50f; //side length of snow plane
     public float uniformForestDensity;
 
+    public NavMeshSurface navmesh;
+
     GameObject snowPlaneResource;
+
+    public enum ForestType
+    {
+        Uniform,
+        Clear
+    }
+    ForestType forest = ForestType.Uniform; // NOTE: all uniform for now
 
     void Start()
     {
@@ -42,7 +53,9 @@ public class ForestController : MonoBehaviour
         oldForest = grid[0].transform;
 
         foreach (GameObject plane in grid)
-            plane.GetComponent<PlaneController>().PopulatePlane("UniformForest");
+            plane.GetComponent<PlaneController>().PopulatePlane(forest);
+
+        navmesh.BuildNavMesh();
     }
 
     void Update()
@@ -60,6 +73,9 @@ public class ForestController : MonoBehaviour
             infWalk(oldForest.position.x, oldForest.position.z, currentForest.position.x, currentForest.position.z);
             changeEnter = false;
             changeExit = false;
+
+            // rebuild nav mesh surface
+            navmesh.BuildNavMesh();
         }
     }
 
@@ -71,7 +87,10 @@ public class ForestController : MonoBehaviour
             for (int i = 0; i < grid.Count; i++)
             {
                 if (grid[i].transform.position.x == X - d)
+                {
                     grid[i].transform.position += new Vector3(3 * d, 0, 0);
+                    grid[i].gameObject.GetComponent<PlaneController>().PopulatePlane(forest);
+                }
             }
         }
 
@@ -80,7 +99,10 @@ public class ForestController : MonoBehaviour
             for (int i = 0; i < grid.Count; i++)
             {
                 if (grid[i].transform.position.x == X + d)
-                    grid[i].transform.position -= new Vector3(3*d, 0, 0);
+                {
+                    grid[i].transform.position -= new Vector3(3 * d, 0, 0);
+                    grid[i].gameObject.GetComponent<PlaneController>().PopulatePlane(forest);
+                }       
             }
         }
 
@@ -89,7 +111,10 @@ public class ForestController : MonoBehaviour
             for (int i = 0; i < grid.Count; i++)
             {
                 if (grid[i].transform.position.z == Z - d)
-                    grid[i].transform.position += new Vector3(0, 0, 3*d);
+                {
+                    grid[i].transform.position += new Vector3(0, 0, 3 * d);
+                    grid[i].gameObject.GetComponent<PlaneController>().PopulatePlane(forest);
+                }     
             }
         }
 
@@ -98,7 +123,10 @@ public class ForestController : MonoBehaviour
             for (int i = 0; i < grid.Count; i++)
             {
                 if (grid[i].transform.position.z == Z + d)
-                    grid[i].transform.position -= new Vector3(0, 0, 3*d);
+                {
+                    grid[i].transform.position -= new Vector3(0, 0, 3 * d);
+                    grid[i].gameObject.GetComponent<PlaneController>().PopulatePlane(forest);
+                }                  
             }
         }
 
