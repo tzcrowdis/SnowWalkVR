@@ -2,23 +2,31 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.AI;
+using Unity.AI.Navigation;
+
 
 public class PlaneController : MonoBehaviour
 {
-    GameObject[] trees = new GameObject[5];
+    GameObject[] trees = new GameObject[5]; // stores the types of trees
 
     float planeLength;
+    public float length;
 
     public Transform player;
+
+    public NavMeshSurface surface;
+    NavMeshLink link;
     
     void Awake()
     {
         for (int i = 0; i < trees.Length; i++)
             trees[i] = Resources.Load($"Trees/CreepyTree{i + 1}") as GameObject;
 
-        planeLength = 100 * transform.localScale.x;
-
         player = GameObject.Find("XR Origin (XR Rig)").transform;
+
+        length = player.gameObject.GetComponent<ForestController>().d;
+        planeLength = 2 * length * transform.localScale.x; // 2x bc model scale is all 0.5
     }
 
     void Update()
@@ -37,6 +45,43 @@ public class PlaneController : MonoBehaviour
                 ClearPlane();
                 break;
         }
+
+        BuildForestNavMesh();
+    }
+
+    void BuildForestNavMesh()
+    {
+        // surface on individual planes
+        surface = gameObject.AddComponent<NavMeshSurface>();
+        surface.collectObjects = CollectObjects.Children;
+        surface.BuildNavMesh();
+
+        float agentRadius = 1f; // agent types radius (plus a little)
+
+        // link between planes
+        link = gameObject.AddComponent<NavMeshLink>();
+        link.width = length;
+        link.costModifier = 0;
+        link.startPoint = new Vector3(length / 2 - agentRadius, 0, 0);
+        link.endPoint = new Vector3(length / 2 + agentRadius, 0, 0);
+
+        link = gameObject.AddComponent<NavMeshLink>();
+        link.width = length;
+        link.costModifier = 0;
+        link.startPoint = new Vector3(-length / 2 - agentRadius, 0, 0);
+        link.endPoint = new Vector3(-length / 2 + agentRadius, 0, 0);
+
+        link = gameObject.AddComponent<NavMeshLink>();
+        link.width = length;
+        link.costModifier = 0;
+        link.startPoint = new Vector3(0, 0, length / 2 - agentRadius);
+        link.endPoint = new Vector3(0, 0, length / 2 + agentRadius);
+
+        link = gameObject.AddComponent<NavMeshLink>();
+        link.width = length;
+        link.costModifier = 0;
+        link.startPoint = new Vector3(0, 0, -length / 2 - agentRadius);
+        link.endPoint = new Vector3(0, 0, -length / 2 + agentRadius);
     }
 
     void UniformForest()

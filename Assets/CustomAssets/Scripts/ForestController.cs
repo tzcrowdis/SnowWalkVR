@@ -6,7 +6,7 @@ public class ForestController : MonoBehaviour
 {
     public bool changeEnter;
     public bool changeExit;
-    float d = 50f; //side length of snow plane
+    public float d = 50f; //side length of snow plane
 
     public List<GameObject> grid;
 
@@ -47,7 +47,7 @@ public class ForestController : MonoBehaviour
 
     void Update()
     {
-        //dirty fix to prevent uneven number of trigger fun.'s
+        // HACK to prevent uneven number of trigger function's
         if (changeEnter != changeExit)
         {
             changeEnter = true;
