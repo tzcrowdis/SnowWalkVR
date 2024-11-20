@@ -25,6 +25,8 @@ public class WendigoBehavior : MonoBehaviour
 
     public WendigoState state;
 
+    public bool walking;
+
 
     
     void Start()
@@ -43,12 +45,16 @@ public class WendigoBehavior : MonoBehaviour
 
         float speed = agent.velocity.magnitude;
         UnityEngine.Debug.Log(speed);
-        if (speed > 0.5f) {
-            wendigoAnimator.SetBool("Walking", true);
+        if (speed > 2.5f) {
+            walking = true;
+        }
+        else if (walking == false && speed > 0f) {
+            walking = true;
         }
         else {
-            wendigoAnimator.SetBool("Walking", false);
+            walking = false;
         }
+        wendigoAnimator.SetBool("Walking", walking);
 
 
         Vector3 destination;
