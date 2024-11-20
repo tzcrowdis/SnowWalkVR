@@ -15,11 +15,11 @@ public class StrangeTrees : MonoBehaviour
     float time = 0;
 
     bool wiggle = true;
-
+    
     [Header("Following")]
-    Transform player;
     public float spawnDistance;
     float spawnAngle;
+    Transform player;
 
     void Start()
     {
