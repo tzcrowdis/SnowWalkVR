@@ -576,7 +576,7 @@ GameObject:
   - component: {fileID: 778197655}
   - component: {fileID: 778197654}
   m_Layer: 0
-  m_Name: NavMesh Surface
+  m_Name: Humanoid NavMesh Surface
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6237,6 +6237,7 @@ MonoBehaviour:
   amplitude: 0.15
   frequency: 0.5
   propogationSpeed: 1
+  spawnDistance: 20
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

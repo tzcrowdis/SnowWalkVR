@@ -8,22 +8,37 @@ public class StrangeTrees : MonoBehaviour
     Vector3[] vertices;
     Vector3[] ogVertices;
 
+    [Header("Wiggle Properties")]
     public float amplitude = 1;
     public float frequency = 1;
     public float propogationSpeed = 1;
     float time = 0;
 
     bool wiggle = true;
-    
+
+    [Header("Following")]
+    Transform player;
+    public float spawnDistance;
+    float spawnAngle;
+
     void Start()
     {
         mesh = GetComponent<MeshFilter>().mesh;
         vertices = mesh.vertices;
         ogVertices = mesh.vertices;
+
+        player = GameObject.Find("XR Origin (XR Rig)").transform;
     }
 
     void Update()
     {
+        // tree follows player
+        if (Vector3.Distance(player.position, transform.position) > spawnDistance)
+        {
+            spawnAngle = Random.Range(0f, 2 * Mathf.PI); // TODO: set range to behind the player?
+            transform.position = player.position + spawnDistance * new Vector3(Mathf.Cos(spawnAngle), 0f, Mathf.Sin(spawnAngle));
+        }
+
         if (wiggle)
             Wiggle();
     }
