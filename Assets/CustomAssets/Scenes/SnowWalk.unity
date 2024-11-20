@@ -546,7 +546,7 @@ MonoBehaviour:
   m_OverrideTileSize: 0
   m_TileSize: 256
   m_OverrideVoxelSize: 0
-  m_VoxelSize: 1
+  m_VoxelSize: 0.33333334
   m_MinRegionArea: 2
   m_NavMeshData: {fileID: 0}
   m_BuildHeightMesh: 0
@@ -5554,7 +5554,7 @@ NavMeshAgent:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1134500374}
-  m_Enabled: 1
+  m_Enabled: 0
   m_AgentTypeID: -1372625422
   m_Radius: 1
   m_Speed: 3.5
@@ -5582,6 +5582,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1435398317}
+  wendigoAnimController: {fileID: 0}
+  wendigoAnimator: {fileID: 1134500376}
+  goonDistance: 10
+  state: 1
+  walking: 0
 --- !u!1 &1249617917
 GameObject:
   m_ObjectHideFlags: 0
