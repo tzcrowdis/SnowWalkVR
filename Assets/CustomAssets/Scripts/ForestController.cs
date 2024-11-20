@@ -17,7 +17,7 @@ public class ForestController : MonoBehaviour
     public float d = 50f; //side length of snow plane
     public float uniformForestDensity;
 
-    public NavMeshSurface navmesh;
+    public NavMeshSurface[] navmeshes;
 
     GameObject snowPlaneResource;
 
@@ -55,7 +55,8 @@ public class ForestController : MonoBehaviour
         foreach (GameObject plane in grid)
             plane.GetComponent<PlaneController>().PopulatePlane(forest);
 
-        navmesh.BuildNavMesh();
+        foreach (NavMeshSurface navmesh in navmeshes)
+            navmesh.BuildNavMesh();
     }
 
     void Update()
@@ -75,7 +76,8 @@ public class ForestController : MonoBehaviour
             changeExit = false;
 
             // rebuild nav mesh surface
-            navmesh.BuildNavMesh();
+            foreach (NavMeshSurface navmesh in navmeshes)
+                navmesh.BuildNavMesh();
         }
     }
 
