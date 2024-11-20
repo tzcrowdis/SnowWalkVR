@@ -53,6 +53,8 @@ public class StrangeTrees : MonoBehaviour
         // snap back from wiggle position
         wiggle = false;
 
+        // TODO: try lerping the amplitude
+
         // NOTE: this lags the game HAAAARD (need to optimize mesh vertices???)
         /*
         t = 0;
