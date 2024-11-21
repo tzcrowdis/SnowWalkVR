@@ -58,7 +58,7 @@ public class StrangeTrees : MonoBehaviour
     {
         // delay
         float t = 0;
-        float delay = 0.5f;
+        float delay = 1f;
         while (t < delay)
         {
             t += Time.deltaTime;
