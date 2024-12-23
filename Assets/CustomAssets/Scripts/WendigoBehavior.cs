@@ -44,7 +44,7 @@ public class WendigoBehavior : MonoBehaviour
                 agent.enabled = true;
 
         float speed = agent.velocity.magnitude;
-        UnityEngine.Debug.Log(speed);
+        // UnityEngine.Debug.Log(speed);
         if (speed > 2.5f) {
             walking = true;
         }

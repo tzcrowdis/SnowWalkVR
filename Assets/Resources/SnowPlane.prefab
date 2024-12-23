@@ -72,6 +72,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SnowPlane
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 5c5724aef0885fe4db1a1e2183040cc6, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -84,7 +88,7 @@ PrefabInstance:
       addedObject: {fileID: 139526070573438935}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 5c5724aef0885fe4db1a1e2183040cc6, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 4141441298990436285}
+      addedObject: {fileID: 5361586109872985424}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 5c5724aef0885fe4db1a1e2183040cc6, type: 3}
       insertIndex: -1
       addedObject: {fileID: 5406751739032589543}
@@ -230,7 +234,7 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 1453043773871479701, guid: 5c5724aef0885fe4db1a1e2183040cc6, type: 3}
---- !u!65 &4141441298990436285
+--- !u!65 &5361586109872985424
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -249,8 +253,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 100, y: 5, z: 100}
-  m_Center: {x: 0, y: 2, z: 0}
+  m_Size: {x: 100, y: 10, z: 100}
+  m_Center: {x: 0, y: 5, z: 0}
 --- !u!114 &5406751739032589543
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -275,4 +279,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 089f3a3fb78e38243a0cc7f11c165498, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  length: 0
   player: {fileID: 0}
