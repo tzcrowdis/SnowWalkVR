@@ -4,7 +4,19 @@ using UnityEngine;
 
 public class SnowBall : MonoBehaviour
 {
-    // TODO: pick up and break sound effects
-    // TODO: destroy, decal, and particles on collision
-    // TODO: make VR interactable (might be handled in player controls)
+    private void Start()
+    {
+        // TODO: pick up sound effect
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        // Destroy(gameObject);
+
+        // TODO: break sound effect
+
+        // TODO: spawn snow particles at point of collision
+
+        // TODO: decal on object collided with
+    }
 }
