@@ -5808,6 +5808,10 @@ PrefabInstance:
       value: Bonfire
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 3bed0cc7eb9ca0c4d99294521fbefe66, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 3bed0cc7eb9ca0c4d99294521fbefe66, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
@@ -5845,8 +5849,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ghostPrefab: {fileID: 1437735545}
-  ghostCount: 5
-  distFromFire: 2
+  ghostCount: 10
+  distFromFire: 10
 --- !u!1001 &990228907
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11429,6 +11433,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   agent: {fileID: 0}
+  bonfire: {fileID: 0}
+  chanting: 0
 --- !u!1 &1458774757
 GameObject:
   m_ObjectHideFlags: 0
@@ -11527,6 +11533,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 237e0a1378459114f8f6bbbc667cc649, type: 3}
       propertyPath: m_Name
       value: GhostBride
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 237e0a1378459114f8f6bbbc667cc649, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
