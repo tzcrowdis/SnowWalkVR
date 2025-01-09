@@ -8,15 +8,20 @@ public class GhostBrideBehavior : MonoBehaviour
 {
     [HideInInspector]
     public NavMeshAgent agent;
+
+    [HideInInspector]
     public GameObject bonfire;
+
+    [HideInInspector]
     public bool chanting;
+
+    Animator animator;
 
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
 
-        // TODO enable walking animation
-
+        animator = GetComponent<Animator>();
         chanting = false;
     }
 
@@ -25,15 +30,12 @@ public class GhostBrideBehavior : MonoBehaviour
         transform.LookAt(agent.destination);
 
         // reached location -> look at fire and start chanting
-        if (agent.remainingDistance < agent.stoppingDistance)
+        if (agent.remainingDistance < agent.stoppingDistance && agent.velocity.sqrMagnitude == 0f)
         {
-            if (!agent.hasPath || agent.velocity.sqrMagnitude == 0f)
-            {
-                transform.LookAt(bonfire.transform);
-                // TODO change animation
-
-                chanting = true;
-            }
+            transform.LookAt(bonfire.transform);
+            
+            animator.SetBool("chanting", true);
+            chanting = true;
         }
     }
 }

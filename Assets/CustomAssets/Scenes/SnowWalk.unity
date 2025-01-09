@@ -11412,7 +11412,7 @@ NavMeshAgent:
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
-  m_StoppingDistance: 0
+  m_StoppingDistance: 0.1
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
@@ -11435,6 +11435,27 @@ MonoBehaviour:
   agent: {fileID: 0}
   bonfire: {fileID: 0}
   chanting: 0
+--- !u!95 &1437735549
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1437735545}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: ae2b6130517bca745b2eaae7d5ca3388, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1458774757
 GameObject:
   m_ObjectHideFlags: 0
@@ -11530,6 +11551,18 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -3297720661550594255, guid: 237e0a1378459114f8f6bbbc667cc649, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -3297720661550594255, guid: 237e0a1378459114f8f6bbbc667cc649, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -3297720661550594255, guid: 237e0a1378459114f8f6bbbc667cc649, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 237e0a1378459114f8f6bbbc667cc649, type: 3}
       propertyPath: m_Name
       value: GhostBride
@@ -11548,6 +11581,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 237e0a1378459114f8f6bbbc667cc649, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1437735548}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 237e0a1378459114f8f6bbbc667cc649, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1437735549}
   m_SourcePrefab: {fileID: 100100000, guid: 237e0a1378459114f8f6bbbc667cc649, type: 3}
 --- !u!4 &1513995421 stripped
 Transform:
