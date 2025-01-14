@@ -40,7 +40,7 @@ public class ConjuringRitual : MonoBehaviour
                     0, 
                     centerPosition.z * Random.Range(-spawnPosRandomFactor, spawnPosRandomFactor)
                 );
-            ghosts[i] = Instantiate(ghostPrefab, spawnPosition, Quaternion.identity);
+            ghosts[i] = Instantiate(ghostPrefab, spawnPosition, Quaternion.identity, transform);
             ghosts[i].transform.LookAt(gameObject.transform);
             ghosts[i].GetComponent<GhostBrideBehavior>().agent.destination = destinations[i];
             ghosts[i].GetComponent<GhostBrideBehavior>().bonfire = gameObject;

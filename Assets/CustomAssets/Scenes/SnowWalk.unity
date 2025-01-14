@@ -669,6 +669,9 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 102605566}
     m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7313654230448209575, guid: 895f6f3c2d334633b5800312285058d2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 452463684}
     - targetCorrespondingSourceObject: {fileID: 7696548424635294048, guid: 895f6f3c2d334633b5800312285058d2, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1435398316}
@@ -748,6 +751,31 @@ MonoBehaviour:
     mipBias: 0
     varianceClampScale: 0.9
     contrastAdaptiveSharpening: 0
+--- !u!1 &452463683 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7313654230448209575, guid: 895f6f3c2d334633b5800312285058d2, type: 3}
+  m_PrefabInstance: {fileID: 452463679}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &452463684
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 452463683}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1300d1d29d0c6834a935d05068a28f77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameTime: 0
+  actOneStartTime: 0
+  actTwoStartTime: 0
+  actThreeStartTime: 0
+  player: {fileID: 0}
+  strangeTree: {fileID: 0}
+  bonfire: {fileID: 0}
+  wendigo: {fileID: 0}
 --- !u!1 &550986410
 GameObject:
   m_ObjectHideFlags: 0
@@ -5851,6 +5879,8 @@ MonoBehaviour:
   ghostPrefab: {fileID: 1437735545}
   ghostCount: 10
   distFromFire: 10
+  spawnDist: 0
+  spawnPosRandomFactor: 0
 --- !u!1001 &990228907
 PrefabInstance:
   m_ObjectHideFlags: 0
