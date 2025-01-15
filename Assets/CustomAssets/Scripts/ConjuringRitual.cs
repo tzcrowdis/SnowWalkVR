@@ -14,7 +14,7 @@ public class ConjuringRitual : MonoBehaviour
     public float spawnPosRandomFactor;
 
     Vector3[] destinations;
-    
+
     void Start()
     {
         // get destination based on ghost count and distance from fire
@@ -36,14 +36,14 @@ public class ConjuringRitual : MonoBehaviour
         for (int i = 0; i < ghostCount; i++)
         {
             spawnPosition = new Vector3(
-                    centerPosition.x * Random.Range(-spawnPosRandomFactor, spawnPosRandomFactor), 
-                    0, 
-                    centerPosition.z * Random.Range(-spawnPosRandomFactor, spawnPosRandomFactor)
+                    centerPosition.x + Random.Range(-spawnPosRandomFactor, spawnPosRandomFactor),
+                    0,
+                    centerPosition.z + Random.Range(-spawnPosRandomFactor, spawnPosRandomFactor)
                 );
-            ghosts[i] = Instantiate(ghostPrefab, spawnPosition, Quaternion.identity, transform);
+            ghosts[i] = Instantiate(ghostPrefab, spawnPosition, Quaternion.identity);
             ghosts[i].transform.LookAt(gameObject.transform);
             ghosts[i].GetComponent<GhostBrideBehavior>().agent.destination = destinations[i];
-            ghosts[i].GetComponent<GhostBrideBehavior>().bonfire = gameObject;
+            //ghosts[i].GetComponent<GhostBrideBehavior>().bonfire = gameObject;
         }
     }
 

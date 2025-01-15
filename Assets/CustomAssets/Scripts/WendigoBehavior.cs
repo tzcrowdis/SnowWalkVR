@@ -9,7 +9,7 @@ using UnityEngine.AI;
 public class WendigoBehavior : MonoBehaviour
 {
     NavMeshAgent agent;
-    public Transform player;
+    Transform player;
 
     public AnimatorController wendigoAnimController;
 
@@ -33,7 +33,8 @@ public class WendigoBehavior : MonoBehaviour
     {
         agent = GetComponent<NavMeshAgent>();
         //agent.enabled = false;
-        
+
+        player = GameObject.Find("XR Origin (XR Rig)").transform; // couldn't due from unity editor for some reason
     }
 
     void Update()

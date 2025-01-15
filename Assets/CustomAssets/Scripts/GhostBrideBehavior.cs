@@ -17,20 +17,23 @@ public class GhostBrideBehavior : MonoBehaviour
 
     Animator animator;
 
-    void Start()
+    void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
-
         animator = GetComponent<Animator>();
         chanting = false;
     }
 
     void Update()
     {
+        // HACK conjuring ritual script wasn't setting bonfire object
+        if (bonfire == null)
+            bonfire = GameObject.Find("Bonfire(Clone)");
+        
         transform.LookAt(agent.destination);
 
         // reached location -> look at fire and start chanting
-        if (agent.remainingDistance < agent.stoppingDistance && agent.velocity.sqrMagnitude == 0f)
+        if (agent.remainingDistance < agent.stoppingDistance & agent.velocity.sqrMagnitude == 0f)
         {
             transform.LookAt(bonfire.transform);
             

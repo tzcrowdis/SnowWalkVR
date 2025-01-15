@@ -9,6 +9,10 @@ public class Crow : MonoBehaviour
     float startAltitude;
     public float startleDistance;
 
+    float destroyDistance;
+    float spawnDistance;
+    public float spawnHeight;
+
     Transform player;
 
     public float flightAltitude;
@@ -32,7 +36,15 @@ public class Crow : MonoBehaviour
     
     void Start()
     {
+        destroyDistance = 100f;
+        spawnDistance = 2 * startleDistance;
+
         player = GameObject.Find("XR Origin (XR Rig)").transform;
+
+        float spawnAngle = Random.Range(0f, 2 * Mathf.PI);
+        transform.position = player.position + spawnDistance * new Vector3(Mathf.Cos(spawnAngle), 0f, Mathf.Sin(spawnAngle));
+        transform.position = new Vector3(transform.position.x, spawnHeight, transform.position.z);
+        transform.Rotate(0, Random.Range(0f, 360f), 0);
 
         startAltitude = transform.position.y;
         
@@ -92,6 +104,11 @@ public class Crow : MonoBehaviour
         if (transform.position.y < flightAltitude)
         {
             state = CrowState.TakeOff;
+        }
+
+        if (Vector3.Distance(transform.position, player.position) > destroyDistance)
+        {
+            Destroy(gameObject);
         }
     }
 

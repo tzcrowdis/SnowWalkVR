@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ProgressTracker : MonoBehaviour
 {
-    public float gameTime;
+    float gameTime;
 
     public float actOneStartTime;
     public float actTwoStartTime;
@@ -20,28 +20,31 @@ public class ProgressTracker : MonoBehaviour
 
     void Start()
     {
-        gameTime = Time.realtimeSinceStartup;
+        player.GetComponent<CrowSpawner>().enabled = false;
         act = 0;
     }
 
     void Update()
     {
+        gameTime = Time.realtimeSinceStartup;
+
         if (act != 3)
             UpdateAct();
     }
 
     void UpdateAct()
     {
-        // TODO complete update act function
+        Debug.Log("Game Time: " + gameTime);
+        
+        // TODO test
+        // TODO add act specific ambient music???
         if (act == 0 && actOneStartTime < gameTime)
         {
             // spawn strange tree
             Instantiate(strangeTree);
 
-            // enable crow spawner (spawns crows randomly around player) (copmponent on player?)
-            //player.AddComponent<CrowSpawner>();
-
-            // enable specific music too???
+            // enable crow spawner
+            player.GetComponent<CrowSpawner>().enabled = true;
 
             act = 1;
         }
@@ -50,8 +53,10 @@ public class ProgressTracker : MonoBehaviour
             // delete strange tree
             Destroy(strangeTree);
 
-            // delete crow spawner
-            //Destroy(player.GetComponent<CrowSpawner>());
+            // delete crow spawner and crow
+            player.GetComponent<CrowSpawner>().enabled = false;
+            foreach (GameObject crow in GameObject.FindGameObjectsWithTag("Crow"))
+                Destroy(crow);
 
             // spawn in bonfire
             Instantiate(bonfire); // TODO set position
@@ -60,8 +65,10 @@ public class ProgressTracker : MonoBehaviour
         }
         else if (act == 2 && actThreeStartTime < gameTime)
         {
-            // delete bonfire
+            // delete bonfire and ghosts
             Destroy(bonfire);
+            foreach (GameObject ghost in GameObject.FindGameObjectsWithTag("Ghost"))
+                Destroy(ghost);
 
             // spawn in wendigo
             Instantiate(wendigo);
