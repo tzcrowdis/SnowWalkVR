@@ -12,9 +12,12 @@ public class ProgressTracker : MonoBehaviour
 
     public GameObject player;
 
-    public GameObject strangeTree;
-    public GameObject bonfire;
-    public GameObject wendigo;
+    public GameObject strangeTreePrefab;
+    GameObject strangeTree;
+    public GameObject bonfirePrefab;
+    GameObject bonfire;
+    public GameObject wendigoPrefab;
+    GameObject wendigo;
 
     int act;
 
@@ -41,7 +44,7 @@ public class ProgressTracker : MonoBehaviour
         if (act == 0 && actOneStartTime < gameTime)
         {
             // spawn strange tree
-            Instantiate(strangeTree);
+            strangeTree = Instantiate(strangeTreePrefab);
 
             // enable crow spawner
             player.GetComponent<CrowSpawner>().enabled = true;
@@ -59,7 +62,7 @@ public class ProgressTracker : MonoBehaviour
                 Destroy(crow);
 
             // spawn in bonfire
-            Instantiate(bonfire); // TODO set position
+            bonfire = Instantiate(bonfirePrefab); // TODO set position
 
             act = 2;
         }
@@ -71,7 +74,7 @@ public class ProgressTracker : MonoBehaviour
                 Destroy(ghost);
 
             // spawn in wendigo
-            Instantiate(wendigo);
+            wendigo = Instantiate(wendigoPrefab);
 
             act = 3;
         }

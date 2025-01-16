@@ -17,11 +17,14 @@ public class GhostBrideBehavior : MonoBehaviour
 
     Animator animator;
 
+    float spawnTime;
+
     void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
         chanting = false;
+        spawnTime = 0;
     }
 
     void Update()
@@ -37,8 +40,13 @@ public class GhostBrideBehavior : MonoBehaviour
         {
             transform.LookAt(bonfire.transform);
             
-            animator.SetBool("chanting", true);
-            chanting = true;
+            if (spawnTime > 1f) // HACK prevent chanting at start up
+            {
+                animator.SetBool("chanting", true);
+                chanting = true;
+            }
         }
+
+        spawnTime += Time.deltaTime;
     }
 }

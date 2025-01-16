@@ -76,7 +76,12 @@ public class Crow : MonoBehaviour
     void Idle()
     {
         if (Vector3.Distance(transform.position, player.position) < startleDistance)
+        {
             state = CrowState.TakeOff;
+
+            // TODO look away from player
+            transform.rotation = Quaternion.LookRotation((transform.position - player.position).normalized);
+        }
     }
 
     // crow flys forward and rises to altitude by rotating
