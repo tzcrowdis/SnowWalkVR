@@ -729,12 +729,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   actOneStartTime: 0
-  actTwoStartTime: 10
+  actTwoStartTime: 1000
   actThreeStartTime: 10000
   player: {fileID: 1435398309}
-  strangeTree: {fileID: 8068747200081088144, guid: 8acef365e9671524e9d1ff3e19d8f95b, type: 3}
-  bonfire: {fileID: 4916115897255567041, guid: 78b720a83d3afb347a0a401e6a345c69, type: 3}
-  wendigo: {fileID: 8334421124647368620, guid: b8c5d991b43fd5d4391638b88f5b2d08, type: 3}
+  strangeTreePrefab: {fileID: 8068747200081088144, guid: 8acef365e9671524e9d1ff3e19d8f95b, type: 3}
+  bonfirePrefab: {fileID: 4916115897255567041, guid: 78b720a83d3afb347a0a401e6a345c69, type: 3}
+  wendigoPrefab: {fileID: 8334421124647368620, guid: b8c5d991b43fd5d4391638b88f5b2d08, type: 3}
 --- !u!1 &550986410
 GameObject:
   m_ObjectHideFlags: 0

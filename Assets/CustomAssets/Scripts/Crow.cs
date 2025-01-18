@@ -23,7 +23,9 @@ public class Crow : MonoBehaviour
     public float takeoffAngle;
     Quaternion takeoffStartRotation;
     Quaternion takeoffEndRotation;
-    
+
+    Animator animator;
+
     enum CrowState
     {
         Idle,
@@ -50,14 +52,11 @@ public class Crow : MonoBehaviour
         
         state = StartState();
 
-        takeoffStartRotation = Quaternion.Euler(new Vector3(takeoffAngle, transform.eulerAngles.y, transform.eulerAngles.z));
-        takeoffEndRotation = Quaternion.Euler(new Vector3(0, transform.eulerAngles.y, transform.eulerAngles.z));
+        animator = GetComponent<Animator>();
     }
 
     void Update()
-    {
-        // TODO integrate animation control in each function on state change
-        
+    {   
         switch (state)
         {
             case CrowState.Idle:
@@ -77,10 +76,17 @@ public class Crow : MonoBehaviour
     {
         if (Vector3.Distance(transform.position, player.position) < startleDistance)
         {
-            state = CrowState.TakeOff;
+            // look away from player
+            Vector3 forward = (transform.position - player.position).normalized;
+            forward.y = 0f;
+            transform.rotation = Quaternion.LookRotation(forward);
 
-            // TODO look away from player
-            transform.rotation = Quaternion.LookRotation((transform.position - player.position).normalized);
+            takeoffStartRotation = Quaternion.Euler(new Vector3(takeoffAngle, transform.eulerAngles.y, transform.eulerAngles.z));
+            takeoffEndRotation = Quaternion.Euler(new Vector3(0, transform.eulerAngles.y, transform.eulerAngles.z));
+
+            animator.SetBool("startled", true);
+
+            state = CrowState.TakeOff;
         }
     }
 
@@ -106,10 +112,10 @@ public class Crow : MonoBehaviour
     {
         transform.position += flightSpeed * transform.forward * Time.deltaTime;
 
-        if (transform.position.y < flightAltitude)
+        /*if (transform.position.y < flightAltitude)
         {
             state = CrowState.TakeOff;
-        }
+        }*/
 
         if (Vector3.Distance(transform.position, player.position) > destroyDistance)
         {
