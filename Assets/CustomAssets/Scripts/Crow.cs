@@ -9,6 +9,10 @@ public class Crow : MonoBehaviour
     float startAltitude;
     public float startleDistance;
 
+    float destroyDistance;
+    float spawnDistance;
+    public float spawnHeight;
+
     Transform player;
 
     public float flightAltitude;
@@ -19,7 +23,9 @@ public class Crow : MonoBehaviour
     public float takeoffAngle;
     Quaternion takeoffStartRotation;
     Quaternion takeoffEndRotation;
-    
+
+    Animator animator;
+
     enum CrowState
     {
         Idle,
@@ -32,20 +38,25 @@ public class Crow : MonoBehaviour
     
     void Start()
     {
+        destroyDistance = 100f;
+        spawnDistance = 2 * startleDistance;
+
         player = GameObject.Find("XR Origin (XR Rig)").transform;
+
+        float spawnAngle = Random.Range(0f, 2 * Mathf.PI);
+        transform.position = player.position + spawnDistance * new Vector3(Mathf.Cos(spawnAngle), 0f, Mathf.Sin(spawnAngle));
+        transform.position = new Vector3(transform.position.x, spawnHeight, transform.position.z);
+        transform.Rotate(0, Random.Range(0f, 360f), 0);
 
         startAltitude = transform.position.y;
         
         state = StartState();
 
-        takeoffStartRotation = Quaternion.Euler(new Vector3(takeoffAngle, transform.eulerAngles.y, transform.eulerAngles.z));
-        takeoffEndRotation = Quaternion.Euler(new Vector3(0, transform.eulerAngles.y, transform.eulerAngles.z));
+        animator = GetComponent<Animator>();
     }
 
     void Update()
-    {
-        // TODO integrate animation control in each function on state change
-        
+    {   
         switch (state)
         {
             case CrowState.Idle:
@@ -64,7 +75,19 @@ public class Crow : MonoBehaviour
     void Idle()
     {
         if (Vector3.Distance(transform.position, player.position) < startleDistance)
+        {
+            // look away from player
+            Vector3 forward = (transform.position - player.position).normalized;
+            forward.y = 0f;
+            transform.rotation = Quaternion.LookRotation(forward);
+
+            takeoffStartRotation = Quaternion.Euler(new Vector3(takeoffAngle, transform.eulerAngles.y, transform.eulerAngles.z));
+            takeoffEndRotation = Quaternion.Euler(new Vector3(0, transform.eulerAngles.y, transform.eulerAngles.z));
+
+            animator.SetBool("startled", true);
+
             state = CrowState.TakeOff;
+        }
     }
 
     // crow flys forward and rises to altitude by rotating
@@ -89,9 +112,14 @@ public class Crow : MonoBehaviour
     {
         transform.position += flightSpeed * transform.forward * Time.deltaTime;
 
-        if (transform.position.y < flightAltitude)
+        /*if (transform.position.y < flightAltitude)
         {
             state = CrowState.TakeOff;
+        }*/
+
+        if (Vector3.Distance(transform.position, player.position) > destroyDistance)
+        {
+            Destroy(gameObject);
         }
     }
 

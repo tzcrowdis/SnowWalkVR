@@ -77,7 +77,7 @@ public class ForestController : MonoBehaviour
 
             // rebuild nav mesh surface
             foreach (NavMeshSurface navmesh in navmeshes)
-                navmesh.BuildNavMesh();
+                navmesh.BuildNavMesh(); // TODO try to get only 1 navmesh for performance
         }
     }
 

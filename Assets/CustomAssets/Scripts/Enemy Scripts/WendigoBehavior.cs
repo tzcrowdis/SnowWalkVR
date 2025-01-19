@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using Unity.AI.Navigation;
 using UnityEditor.Animations;
 using UnityEngine;
@@ -8,24 +9,32 @@ using UnityEngine.AI;
 public class WendigoBehavior : MonoBehaviour
 {
     NavMeshAgent agent;
-    public Transform player;
+    Transform player;
+
     public AnimatorController wendigoAnimController;
+
     public Animator wendigoAnimator;
-    
+
     public enum WendigoState
     {
         Chase,
         StalkFar
     }
+
     public float goonDistance;
+
     public WendigoState state;
-    private bool walking;
+
+    public bool walking;
+
+
     
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
         //agent.enabled = false;
-        
+
+        player = GameObject.Find("XR Origin (XR Rig)").transform; // couldn't due from unity editor for some reason
     }
 
     void Update()
@@ -35,8 +44,8 @@ public class WendigoBehavior : MonoBehaviour
             if (FindObjectOfType<NavMeshSurface>().navMeshData != null)
                 agent.enabled = true;
 
-        //Logic to make walking to idle animation change more natural
         float speed = agent.velocity.magnitude;
+        // UnityEngine.Debug.Log(speed);
         if (speed > 2.5f) {
             walking = true;
         }
@@ -51,16 +60,12 @@ public class WendigoBehavior : MonoBehaviour
 
         Vector3 destination;
 
-        //Main behavior state machine
         switch(state) {
             
             case WendigoState.Chase:
                 agent.stoppingDistance = 1;
                 destination = (transform.position - player.position).normalized * 6 + player.position;
                 agent.destination = destination;
-
-                //Once he is at destination, wait for player to look
-
                 break;
 
             case WendigoState.StalkFar:
@@ -68,26 +73,12 @@ public class WendigoBehavior : MonoBehaviour
                 agent.stoppingDistance = 2;
                 destination = (transform.position - player.position).normalized * goonDistance + player.position;
 
-                //Debug.Log(destination);
+                //UnityEngine.Debug.Log(destination);
 
                 agent.destination = destination;
                 
                 break;
         }
 
-        WendigoInView();
-
-    }
-
-    bool WendigoInView() {
-        Vector3 playerRot = player.GetComponentInChildren<Camera>().transform.eulerAngles;
-        Vector3 playerPos = player.GetComponentInChildren<Camera>().transform.position;
-        
-        Vector3 dirFromPlayer = (transform.position - playerPos).normalized;
-        Debug.DrawRay(playerPos, dirFromPlayer * 100, Color.red);
-
-        Debug.Log(dirFromPlayer);
-
-        return false;
     }
 }
