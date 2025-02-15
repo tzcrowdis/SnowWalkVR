@@ -12,6 +12,7 @@ public class HandPhysics : MonoBehaviour
     private Collider[] handColliders;
     private bool isSnapTurning = false;
     public InputActionReference snapTurnAction;
+    public float smoothFactor = 10f;
 
     // Start is called before the first frame update
     void Start()
