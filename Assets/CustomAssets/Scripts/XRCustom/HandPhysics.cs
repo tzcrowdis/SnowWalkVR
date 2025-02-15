@@ -50,28 +50,29 @@ public class HandPhysics : MonoBehaviour
     private void OnSnapTurnPerformed(InputAction.CallbackContext context)
     {
         isSnapTurning = true;
-        Debug.Log("Snap turn started");
     }
 
     private void OnSnapTurnCanceled(InputAction.CallbackContext context)
     {
         isSnapTurning = false;
-        Debug.Log("Snap turn ended");
     }
 
 
     void FixedUpdate()
     {
-        //update hand position
-        rb.velocity = (target.position - transform.position) / Time.fixedDeltaTime;
+        if (!isSnapTurning)
+        {
+            //update hand position
+            rb.velocity = (target.position - transform.position) / Time.fixedDeltaTime;
 
-        //update hand rotation
-        Quaternion rotationDifference = target.rotation * Quaternion.Inverse(transform.rotation);
-        rotationDifference.ToAngleAxis(out float angleInDegree, out Vector3 rotationAxis);
+            //update hand rotation
+            Quaternion rotationDifference = target.rotation * Quaternion.Inverse(transform.rotation);
+            rotationDifference.ToAngleAxis(out float angleInDegree, out Vector3 rotationAxis);
 
-        Vector3 rotationDifferenceInDegree = angleInDegree * rotationAxis; 
-        
-        rb.angularVelocity = rotationDifferenceInDegree * Mathf.Deg2Rad / Time.fixedDeltaTime;
+            Vector3 rotationDifferenceInDegree = angleInDegree * rotationAxis; 
+            
+            rb.angularVelocity = rotationDifferenceInDegree * Mathf.Deg2Rad / Time.fixedDeltaTime;
+        }
     }
 
     void LateUpdate()
@@ -79,7 +80,6 @@ public class HandPhysics : MonoBehaviour
         // Override hand position and rotation while executing a snap turn
         if (isSnapTurning)
         {
-            Debug.Log("Disabling hand physics");
             rb.isKinematic = true; // Disable physics
             transform.position = target.position;
             transform.rotation = target.rotation;
