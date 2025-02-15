@@ -63,16 +63,9 @@ public class HandPhysics : MonoBehaviour
     {
         if (!isSnapTurning)
         {
-            //update hand position
-            rb.velocity = (target.position - transform.position) / Time.fixedDeltaTime;
+            rb.MovePosition(Vector3.Lerp(transform.position, target.position, smoothFactor * Time.fixedDeltaTime));
 
-            //update hand rotation
-            Quaternion rotationDifference = target.rotation * Quaternion.Inverse(transform.rotation);
-            rotationDifference.ToAngleAxis(out float angleInDegree, out Vector3 rotationAxis);
-
-            Vector3 rotationDifferenceInDegree = angleInDegree * rotationAxis; 
-            
-            rb.angularVelocity = rotationDifferenceInDegree * Mathf.Deg2Rad / Time.fixedDeltaTime;
+            rb.MoveRotation(Quaternion.Slerp(transform.rotation, target.rotation, smoothFactor * Time.fixedDeltaTime));
         }
     }
 
