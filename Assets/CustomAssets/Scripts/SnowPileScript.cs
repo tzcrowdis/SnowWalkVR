@@ -6,7 +6,6 @@ using UnityEngine.XR.Interaction.Toolkit;
 public class SnowPileScript : MonoBehaviour
 {
     public GameObject snowballPrefab;
-    public XRSimpleInteractable interactable;
 
     public XRInteractionManager interactionManager;
 

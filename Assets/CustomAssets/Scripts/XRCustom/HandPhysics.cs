@@ -12,7 +12,11 @@ public class HandPhysics : MonoBehaviour
     private Collider[] handColliders;
     private bool isSnapTurning = false;
     public InputActionReference snapTurnAction;
-    public float smoothFactor = 10f;
+    
+    private float smoothFactor = 50f;
+
+
+
 
     // Start is called before the first frame update
     void Start()
@@ -58,30 +62,31 @@ public class HandPhysics : MonoBehaviour
         isSnapTurning = false;
     }
 
+    void Update()
+    {
+
+        
+    }
 
     void FixedUpdate()
     {
-        if (!isSnapTurning)
-        {
-            rb.MovePosition(Vector3.Lerp(transform.position, target.position, smoothFactor * Time.fixedDeltaTime));
+        // Calculate the desired velocity to reach the target position
+        Vector3 direction = (target.position - rb.position).normalized;
+        float distance = Vector3.Distance(rb.position, target.position);
+        rb.velocity = direction * (distance * smoothFactor);
 
-            rb.MoveRotation(Quaternion.Slerp(transform.rotation, target.rotation, smoothFactor * Time.fixedDeltaTime));
+        // Calculate the desired angular velocity to reach the target rotation
+        Quaternion targetRotation = target.rotation;
+        Quaternion rotationDelta = targetRotation * Quaternion.Inverse(rb.rotation);
+        rotationDelta.ToAngleAxis(out float angle, out Vector3 axis);
+
+        // Normalize the angle to the range [-180, 180] to avoid flips
+        if (angle > 180f)
+        {
+            angle -= 360f;
         }
+
+        rb.angularVelocity = axis * (angle * Mathf.Deg2Rad * smoothFactor);
     }
 
-    void LateUpdate()
-    {
-        // Override hand position and rotation while executing a snap turn
-        if (isSnapTurning)
-        {
-            rb.isKinematic = true; // Disable physics
-            transform.position = target.position;
-            transform.rotation = target.rotation;
-        }
-        else
-        {
-            rb.isKinematic = false;
-        }
-
-    }
 }
