@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Diagnostics;
 using Unity.AI.Navigation;
+using Unity.VisualScripting.FullSerializer;
 using UnityEditor.Animations;
 using UnityEngine;
 using UnityEngine.AI;
@@ -9,6 +9,7 @@ using UnityEngine.AI;
 public class WendigoBehavior : MonoBehaviour
 {
     NavMeshAgent agent;
+    NavMeshSurface surface;
 
     public AnimatorController wendigoAnimController;
     public Animator wendigoAnimator;
@@ -41,10 +42,12 @@ public class WendigoBehavior : MonoBehaviour
     public float attackDistance;
 
     Vector3 fleeDestination;
+    bool fleeDestSet = false;
     
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
+        surface = GameObject.Find("Wendigo Navmesh Surface").GetComponent<NavMeshSurface>();
         //agent.enabled = false;
 
         prey = GameObject.Find("XR Origin (XR Rig)").transform; // couldn't do from unity editor for some reason
@@ -53,6 +56,8 @@ public class WendigoBehavior : MonoBehaviour
 
         // testing 
         state = WendigoState.Circling;
+        preyObstacle.radius = circlingRadius;
+        surface.BuildNavMesh();
     }
 
     void Update()
@@ -95,6 +100,8 @@ public class WendigoBehavior : MonoBehaviour
                 Flee();
                 break;
         }
+
+        Debug.Log(state);
     }
 
     void Spawning()
@@ -103,22 +110,24 @@ public class WendigoBehavior : MonoBehaviour
 
         // TODO if spawning animation is complete ->
         preyObstacle.radius = circlingRadius;
+        surface.BuildNavMesh();
         state = WendigoState.Circling;
     }
 
     void Circling()
     {
         // walk towards position behind players head
-        agent.destination = circlingDestination.position;
-        agent.stoppingDistance = 1f;
+        agent.destination = prey.position - circlingRadius * prey.forward;
+        agent.stoppingDistance = 0.1f;
 
         wendigoAnimator.SetBool("Walking", true);
         agent.speed = walkSpeed;
 
         // if behind player -> charge or test charge 
-        if (agent.remainingDistance < agent.stoppingDistance)
+        if (WendigoAtDestination())
         {
             preyObstacle.radius = preyObstacleRadius;
+            surface.BuildNavMesh();
 
             if (testChargeCount >= testChargeCountLimit)
                 state = WendigoState.Charge;
@@ -136,8 +145,9 @@ public class WendigoBehavior : MonoBehaviour
         agent.speed = sprintSpeed;
 
         // if within test charge distance -> flee
-        if (agent.remainingDistance < agent.stoppingDistance)
+        if (WendigoAtDestination())
         {
+            testChargeCount++;
             state = WendigoState.Flee;
         }
     }
@@ -151,29 +161,40 @@ public class WendigoBehavior : MonoBehaviour
         agent.speed = sprintSpeed;
 
         // if within attack distance -> kill prey
-        if (agent.remainingDistance < agent.stoppingDistance)
+        if (WendigoAtDestination())
         {
             // TODO kill
+            Debug.Log("KILL");
         }
     }
 
     void Flee()
     {
-        if (fleeDestination == null)
-            fleeDestination = (transform.position - prey.position).normalized * circlingRadius + transform.position;
+        if (!fleeDestSet)
+        {
+            fleeDestination = (transform.position - prey.position).normalized * circlingRadius * 2f + prey.position;
+            fleeDestSet = true;
+        }
+            
 
         agent.destination = fleeDestination;
-        agent.stoppingDistance = 1f;
+        agent.stoppingDistance = 0.1f;
 
         // TODO sprint animation
         agent.speed = sprintSpeed;
 
-        if (agent.remainingDistance < agent.stoppingDistance)
+        if (WendigoAtDestination())
         {
-            fleeDestination = new Vector3();
+            fleeDestSet = false;
             preyObstacle.radius = circlingRadius;
+            surface.BuildNavMesh();
             state = WendigoState.Circling;
         }
+    }
+
+    bool WendigoAtDestination()
+    {
+        return !agent.pathPending && agent.remainingDistance < agent.stoppingDistance;
     }
 
     public void HitBySnowball()
