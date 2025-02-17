@@ -281,3 +281,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   length: 0
   player: {fileID: 0}
+  snowpilePrefab: {fileID: 2027483331072736338, guid: 9e821f5b431ae4a4dad0c7aac70c57b7, type: 3}
+  snowpileDensity: 5
