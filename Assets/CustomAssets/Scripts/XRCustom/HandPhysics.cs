@@ -7,13 +7,14 @@ using UnityEngine.InputSystem;
 public class HandPhysics : MonoBehaviour
 {
 
-    public Transform target;
+    public Transform XRControllerTransform;
+    public Transform XRLocomotionTransform;
     private Rigidbody rb;
     private Collider[] handColliders;
     private bool isSnapTurning = false;
     public InputActionReference snapTurnAction;
     
-    private float smoothFactor = 50f;
+    private float smoothFactor = 20f;
 
 
 
@@ -64,29 +65,45 @@ public class HandPhysics : MonoBehaviour
 
     void Update()
     {
-
-        
+        if (isSnapTurning)
+        {
+            rb.isKinematic = true;
+            rb.transform.SetPositionAndRotation(XRControllerTransform.position, XRControllerTransform.rotation);
+        }  
     }
 
     void FixedUpdate()
     {
-        // Calculate the desired velocity to reach the target position
-        Vector3 direction = (target.position - rb.position).normalized;
-        float distance = Vector3.Distance(rb.position, target.position);
-        rb.velocity = direction * (distance * smoothFactor);
-
-        // Calculate the desired angular velocity to reach the target rotation
-        Quaternion targetRotation = target.rotation;
-        Quaternion rotationDelta = targetRotation * Quaternion.Inverse(rb.rotation);
-        rotationDelta.ToAngleAxis(out float angle, out Vector3 axis);
-
-        // Normalize the angle to the range [-180, 180] to avoid flips
-        if (angle > 180f)
+          
+        //disable physics movement if currently snap turning
+        if(!isSnapTurning)
         {
-            angle -= 360f;
-        }
+            rb.isKinematic = false;
+            // Calculate the desired velocity to reach the XRControllerTransform position
+            Vector3 direction = (XRControllerTransform.position - rb.position).normalized;
+            float distance = Vector3.Distance(rb.position, XRControllerTransform.position);
+            rb.velocity = direction * (distance * smoothFactor);
 
-        rb.angularVelocity = axis * (angle * Mathf.Deg2Rad * smoothFactor);
+            /*
+            if (XRLocomotionTransform.position != XRControllerTransform.position)
+            {
+                Debug.Log("loco: " + XRLocomotionTransform.position + "; hand: " +  XRControllerTransform.position);
+            }
+            */
+
+            // Calculate the desired angular velocity to reach the XRControllerTransform rotation
+            Quaternion targetRotation = XRControllerTransform.rotation;
+            Quaternion rotationDelta = targetRotation * Quaternion.Inverse(rb.rotation);
+            rotationDelta.ToAngleAxis(out float angle, out Vector3 axis);
+
+            // Normalize the angle to the range [-180, 180] to avoid flips
+            if (angle > 180f)
+            {
+                angle -= 360f;
+            }
+
+            rb.angularVelocity = axis * (angle * Mathf.Deg2Rad * smoothFactor);
+        }
     }
 
 }

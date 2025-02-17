@@ -4,6 +4,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 using Unity.AI.Navigation;
+using UnityEngine.XR.Interaction.Toolkit;
 
 
 public class PlaneController : MonoBehaviour
@@ -14,15 +15,19 @@ public class PlaneController : MonoBehaviour
     public float length;
 
     public Transform player;
-    
+
+    private ForestController forestController;
+
     void Awake()
     {
         for (int i = 0; i < trees.Length; i++)
             trees[i] = Resources.Load($"Trees/CreepyTree{i + 1}") as GameObject;
 
-        player = GameObject.Find("XR Origin (XR Rig)").transform;
+        player = WorldController.Instance.player.transform;
 
-        length = player.gameObject.GetComponent<ForestController>().d;
+        forestController = WorldController.Instance.forestController;
+
+        length = forestController.d;
         planeLength = 2 * length * transform.localScale.x; // 2x bc model scale is all 0.5
     }
 
@@ -48,7 +53,7 @@ public class PlaneController : MonoBehaviour
     {
         ClearPlane();
         
-        float density = player.gameObject.GetComponent<ForestController>().uniformForestDensity;
+        float density = forestController.uniformForestDensity;
 
         float x;
         float z;

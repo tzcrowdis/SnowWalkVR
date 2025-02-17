@@ -8,8 +8,9 @@ public class ForestTriggers : MonoBehaviour
     {
         if (other.gameObject.name.Contains("XR Origin"))
         {
-            other.GetComponent<ForestController>().currentForest = gameObject.transform;
-            other.GetComponent<ForestController>().changeEnter = true;
+            ForestController forestController = WorldController.Instance.forestController;
+            forestController.currentForest = gameObject.transform;
+            forestController.changeEnter = true;
         }
     }
 
@@ -17,8 +18,9 @@ public class ForestTriggers : MonoBehaviour
     {
         if (other.gameObject.name.Contains("XR Origin"))
         {
-            other.GetComponent<ForestController>().oldForest = gameObject.transform;
-            other.GetComponent<ForestController>().changeExit = true;
+            ForestController forestController = WorldController.Instance.forestController;
+            forestController.oldForest = gameObject.transform;
+            forestController.changeExit = true;
         }
     }
 }
