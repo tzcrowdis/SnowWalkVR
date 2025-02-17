@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 
@@ -24,6 +25,14 @@ public class SnowPileScript : MonoBehaviour
 
     }
 
+    public void setSnowballMaterial(Material material)
+    {
+        foreach (MeshRenderer renderer in GetComponentsInChildren<MeshRenderer>())
+        {
+            renderer.material = material;
+        }
+    }
+
     public void grabSnowball(SelectEnterEventArgs args)
     {
         //spawn Snowball
@@ -31,6 +40,7 @@ public class SnowPileScript : MonoBehaviour
 
         //attach to hand
         interactionManager.SelectEnter(args.interactorObject, snowball.GetComponent<XRGrabInteractable>());
+        snowball.GetComponent<SnowBall>().setSnowballHover(false);
 
         // destroy next snowball
         Destroy(transform.GetChild(transform.childCount - 1).gameObject);
