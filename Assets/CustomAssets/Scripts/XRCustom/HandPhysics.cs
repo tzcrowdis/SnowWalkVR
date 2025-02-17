@@ -14,7 +14,7 @@ public class HandPhysics : MonoBehaviour
     private bool isSnapTurning = false;
     public InputActionReference snapTurnAction;
     
-    private float smoothFactor = 20f;
+    private float smoothFactor = 30f;
 
 
 

@@ -327,11 +327,6 @@ MonoBehaviour:
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
   m_SoftShadowQuality: 0
---- !u!4 &418938508 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 267580772455570413, guid: 6f67e6af761717447b1020fe038b507f, type: 3}
-  m_PrefabInstance: {fileID: 5663005563938421545}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &452463680 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1275074556593916020, guid: 6f67e6af761717447b1020fe038b507f, type: 3}
@@ -1090,3 +1085,4 @@ SceneRoots:
   - {fileID: 3239636603752417067}
   - {fileID: 1535283422}
   - {fileID: 1054581166}
+  - {fileID: 162361622}
