@@ -32,5 +32,11 @@ public class SnowPileScript : MonoBehaviour
         //attach to hand
         interactionManager.SelectEnter(args.interactorObject, snowball.GetComponent<XRGrabInteractable>());
 
+        // destroy next snowball
+        Destroy(transform.GetChild(transform.childCount - 1).gameObject);
+
+        // destroy snow pile if empty
+        if (transform.childCount == 0)
+            Destroy(gameObject);
     }
 }
