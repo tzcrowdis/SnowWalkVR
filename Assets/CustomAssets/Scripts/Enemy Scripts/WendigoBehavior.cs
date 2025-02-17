@@ -101,7 +101,7 @@ public class WendigoBehavior : MonoBehaviour
                 break;
         }
 
-        Debug.Log(state);
+        //Debug.Log(state);
     }
 
     void Spawning()

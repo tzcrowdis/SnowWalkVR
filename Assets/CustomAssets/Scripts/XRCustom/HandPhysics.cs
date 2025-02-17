@@ -69,7 +69,7 @@ public class HandPhysics : MonoBehaviour
         {
             rb.isKinematic = true;
             rb.transform.SetPositionAndRotation(XRControllerTransform.position, XRControllerTransform.rotation);
-        }  
+        }
     }
 
     void FixedUpdate()
