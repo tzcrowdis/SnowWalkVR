@@ -22,6 +22,8 @@ public class PlaneController : MonoBehaviour
     public GameObject snowpilePrefab;
     public int snowpileDensity;
 
+    int conflictAttempts = 1000; // HACK stop infinite while loops during conflict checks
+
     void Awake()
     {
         for (int i = 0; i < trees.Length; i++)
@@ -67,12 +69,25 @@ public class PlaneController : MonoBehaviour
             z = Random.Range(-planeLength, planeLength);
 
             //check x, z conflicts
+            for (int j = 0; j < conflictAttempts; j++)
+            {
+                if (Vector3.Distance(transform.position + new Vector3(x, 0, z), player.transform.position) < 15f)
+                {
+                    x = Random.Range(-planeLength, planeLength);
+                    z = Random.Range(-planeLength, planeLength);
+                }
+                else
+                {
+                    break;
+                }
+            }
+            /*
             while (Vector3.Distance(transform.position + new Vector3(x, 0, z), player.transform.position) < 15f)
             {
                 x = Random.Range(-planeLength, planeLength);
                 z = Random.Range(-planeLength, planeLength);
             }
-
+            */
             //instantiate the tree with some randomness
             treeNumber = Random.Range(0, trees.Length);
             tree = Instantiate(trees[treeNumber], transform);
@@ -99,10 +114,10 @@ public class PlaneController : MonoBehaviour
             snowpile.transform.localPosition = new Vector3(x, y, z);
 
             // check for position conflicts
-            bool conflict = true;
-            while (conflict)
+            bool conflictFound = false;
+            for (int j = 0; j < conflictAttempts; j++)
             {
-                bool conflictFound = false;
+                conflictFound = false;
                 foreach (Transform child in transform)
                 {
                     if (Vector3.Distance(snowpile.transform.position, child.position) < 1f)
@@ -115,13 +130,17 @@ public class PlaneController : MonoBehaviour
                 }
 
                 if (!conflictFound)
-                    conflict = false;
+                    break;
             }
 
-            // set final position and rotation
-            snowpile.transform.parent = transform;
-            snowpile.transform.localPosition = new Vector3(x, y, z);
-            snowpile.transform.Rotate(0f, Random.Range(0f, 360f), 0f);
+
+            if (!conflictFound)
+            {
+                // set final position and rotation
+                snowpile.transform.parent = transform;
+                snowpile.transform.localPosition = new Vector3(x, y, z);
+                snowpile.transform.Rotate(0f, Random.Range(0f, 360f), 0f);
+            }
         }
     }
 

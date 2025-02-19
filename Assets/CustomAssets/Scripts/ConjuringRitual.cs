@@ -49,6 +49,7 @@ public class ConjuringRitual : MonoBehaviour
 
     void Update()
     {
+        /*
         // check for all ghosts in position
         for (int i = 0; i < ghostCount; i++)
         {
@@ -60,5 +61,11 @@ public class ConjuringRitual : MonoBehaviour
                 // TODO start next step of ritual...
             }
         }
+        */
+    }
+
+    void OnDestroy()
+    {
+        // TODO 
     }
 }

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.AI.Navigation;
 using UnityEngine;
 
 public class ProgressTracker : MonoBehaviour
@@ -19,12 +20,18 @@ public class ProgressTracker : MonoBehaviour
     public GameObject wendigoPrefab;
     GameObject wendigo;
 
+    public NavMeshSurface ghostNavMesh;
+    public NavMeshSurface wendigoNavMesh;
+
     int act;
 
     void Start()
     {
-        player.GetComponent<CrowSpawner>().enabled = false;
+        GetComponent<CrowSpawner>().enabled = false;
         act = 0;
+
+        ghostNavMesh.gameObject.SetActive(false);
+        wendigoNavMesh.gameObject.SetActive(false);
     }
 
     void Update()
@@ -37,7 +44,7 @@ public class ProgressTracker : MonoBehaviour
 
     void UpdateAct()
     {
-        Debug.Log("Game Time: " + gameTime);
+        //Debug.Log("Game Time: " + gameTime);
         
         // TODO test
         // TODO add act specific ambient music???
@@ -47,7 +54,7 @@ public class ProgressTracker : MonoBehaviour
             strangeTree = Instantiate(strangeTreePrefab);
 
             // enable crow spawner
-            player.GetComponent<CrowSpawner>().enabled = true;
+            GetComponent<CrowSpawner>().enabled = true;
 
             act = 1;
         }
@@ -57,9 +64,13 @@ public class ProgressTracker : MonoBehaviour
             Destroy(strangeTree);
 
             // delete crow spawner and crow
-            player.GetComponent<CrowSpawner>().enabled = false;
+            GetComponent<CrowSpawner>().enabled = false;
             foreach (GameObject crow in GameObject.FindGameObjectsWithTag("Crow"))
                 Destroy(crow);
+
+            // ghost nav surface
+            ghostNavMesh.gameObject.SetActive(true);
+            ghostNavMesh.BuildNavMesh();
 
             // spawn in bonfire
             bonfire = Instantiate(bonfirePrefab); // TODO set position
@@ -72,6 +83,11 @@ public class ProgressTracker : MonoBehaviour
             Destroy(bonfire);
             foreach (GameObject ghost in GameObject.FindGameObjectsWithTag("Ghost"))
                 Destroy(ghost);
+
+            // toggle ghost and wendigo nav meshes
+            ghostNavMesh.gameObject.SetActive(false);
+            wendigoNavMesh.gameObject.SetActive(true);
+            wendigoNavMesh.BuildNavMesh();
 
             // spawn in wendigo
             wendigo = Instantiate(wendigoPrefab);

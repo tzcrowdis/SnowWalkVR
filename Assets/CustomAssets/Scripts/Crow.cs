@@ -26,6 +26,8 @@ public class Crow : MonoBehaviour
 
     Animator animator;
 
+    AudioSource crowStartled;
+
     enum CrowState
     {
         Idle,
@@ -53,6 +55,8 @@ public class Crow : MonoBehaviour
         state = StartState();
 
         animator = GetComponent<Animator>();
+
+        crowStartled = gameObject.GetComponent<AudioSource>();
     }
 
     void Update()
@@ -87,6 +91,8 @@ public class Crow : MonoBehaviour
             animator.SetBool("startled", true);
 
             state = CrowState.TakeOff;
+
+            crowStartled.Play();
         }
     }
 
