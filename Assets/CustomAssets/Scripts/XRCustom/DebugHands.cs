@@ -1,32 +1,22 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class GripInputDebug : MonoBehaviour
+public class DebugHand : MonoBehaviour
 {
-    public InputActionReference gripActionReference;
+    public Transform XRControllerTransform;
+    public Transform XRLocomotionTransform;
 
-    private void OnEnable()
+
+
+    // Start is called before the first frame update
+    void Start()
     {
-        // Enable the action and subscribe to the performed event
-        gripActionReference.action.Enable();
-        gripActionReference.action.performed += OnGripPerformed;
-        gripActionReference.action.canceled += OnGripCanceled;
+
     }
 
-    private void OnDisable()
+    void Update()
     {
-        // Unsubscribe from the events
-        gripActionReference.action.performed -= OnGripPerformed;
-        gripActionReference.action.canceled -= OnGripCanceled;
+        transform.SetPositionAndRotation(XRControllerTransform.position, XRControllerTransform.rotation);
     }
 
-    private void OnGripPerformed(InputAction.CallbackContext context)
-    {
-        Debug.Log("Grip Pressed");
-    }
-
-    private void OnGripCanceled(InputAction.CallbackContext context)
-    {
-        Debug.Log("Grip Released");
-    }
 }

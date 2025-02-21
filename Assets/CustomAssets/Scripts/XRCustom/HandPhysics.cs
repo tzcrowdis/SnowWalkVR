@@ -15,6 +15,11 @@ public class HandPhysics : MonoBehaviour
     public InputActionReference snapTurnAction;
     
     private float smoothFactor = 30f;
+    //the connecting joint, made in runtime.
+    [HideInInspector] public ConfigurableJoint handToBodyJoint;
+
+    //the player rigidbody, assigned in the inspector
+    [SerializeField] private Rigidbody playerRB;
 
 
 
@@ -27,6 +32,7 @@ public class HandPhysics : MonoBehaviour
 
         //hands got move fuckin fast
         rb.maxAngularVelocity = Mathf.Infinity;
+        rb.maxLinearVelocity = Mathf.Infinity;
 
         //Get all hand colliders
         handColliders = GetComponentsInChildren<Collider>();
@@ -36,6 +42,36 @@ public class HandPhysics : MonoBehaviour
         snapTurnAction.action.performed += OnSnapTurnPerformed;
         snapTurnAction.action.canceled += OnSnapTurnCanceled;
     }
+
+
+    
+    /*
+
+    //In the awake method, connect the hand to the body.
+    private void Awake()
+    {
+        handToBodyJoint = playerRB.gameObject.AddComponent<ConfigurableJoint>();
+        //joint setup, choosing the body and zeroing out anchors
+        handToBodyJoint.connectedBody = rb;
+        handToBodyJoint.autoConfigureConnectedAnchor = false;
+        handToBodyJoint.anchor = Vector3.zero;
+        handToBodyJoint.connectedAnchor = Vector3.zero;
+
+        //setup the joint drive by making a new one, should probably make these values editable.
+        handToBodyJoint.xDrive = new JointDrive
+        {
+            positionSpring = 1000f,
+            positionDamper = 100f,
+            maximumForce = 750f
+        };
+        //set all the other drives used to this drive.
+        handToBodyJoint.yDrive = handToBodyJoint.xDrive;
+        handToBodyJoint.zDrive = handToBodyJoint.xDrive;
+        //we use the slerp drive instead to make rotations slightly easier
+        handToBodyJoint.rotationDriveMode = RotationDriveMode.Slerp;
+        handToBodyJoint.slerpDrive = handToBodyJoint.xDrive;
+    }
+    */
 
     public void EnableHandCollider()
     {
@@ -70,26 +106,13 @@ public class HandPhysics : MonoBehaviour
             rb.isKinematic = true;
             rb.transform.SetPositionAndRotation(XRControllerTransform.position, XRControllerTransform.rotation);
         }
-    }
-
-    void FixedUpdate()
-    {
-          
-        //disable physics movement if currently snap turning
-        if(!isSnapTurning)
+        else
         {
             rb.isKinematic = false;
             // Calculate the desired velocity to reach the XRControllerTransform position
-            Vector3 direction = (XRControllerTransform.position - rb.position).normalized;
-            float distance = Vector3.Distance(rb.position, XRControllerTransform.position);
-            rb.velocity = direction * (distance * smoothFactor);
+            Vector3 direction = XRControllerTransform.position - transform.position;
+            rb.velocity = direction / Time.fixedDeltaTime;
 
-            /*
-            if (XRLocomotionTransform.position != XRControllerTransform.position)
-            {
-                Debug.Log("loco: " + XRLocomotionTransform.position + "; hand: " +  XRControllerTransform.position);
-            }
-            */
 
             // Calculate the desired angular velocity to reach the XRControllerTransform rotation
             Quaternion targetRotation = XRControllerTransform.rotation;
@@ -102,8 +125,7 @@ public class HandPhysics : MonoBehaviour
                 angle -= 360f;
             }
 
-            rb.angularVelocity = axis * (angle * Mathf.Deg2Rad * smoothFactor);
+            rb.angularVelocity = (angle * axis) * Mathf.Deg2Rad / Time.fixedDeltaTime;
         }
     }
-
 }
