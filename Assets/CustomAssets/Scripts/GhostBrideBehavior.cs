@@ -19,12 +19,15 @@ public class GhostBrideBehavior : MonoBehaviour
 
     float spawnTime;
 
+    AudioSource chant;
+
     void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
         chanting = false;
         spawnTime = 0;
+        chant = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -44,6 +47,9 @@ public class GhostBrideBehavior : MonoBehaviour
             {
                 animator.SetBool("chanting", true);
                 chanting = true;
+
+                if (!chant.isPlaying)
+                    chant.Play();
             }
         }
 
