@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.XR.Interaction.Toolkit;
 
 public class HandPhysics : MonoBehaviour
 {
@@ -21,6 +22,11 @@ public class HandPhysics : MonoBehaviour
     //the player rigidbody, assigned in the inspector
     [SerializeField] private Rigidbody playerRB;
 
+    //The controller interactor
+    private XRDirectInteractor interactor;
+
+
+
 
 
 
@@ -36,6 +42,8 @@ public class HandPhysics : MonoBehaviour
 
         //Get all hand colliders
         handColliders = GetComponentsInChildren<Collider>();
+
+        interactor = XRControllerTransform.GetComponentInChildren<XRDirectInteractor>();
 
         //Subscribe to snap turn events
         snapTurnAction.action.Enable();
@@ -75,17 +83,25 @@ public class HandPhysics : MonoBehaviour
 
     public void EnableHandCollider()
     {
-        foreach (var item in handColliders) 
+        if (!interactor.isSelectActive)
         {
-            item.enabled = true;
+            foreach (var item in handColliders) 
+            {
+                item.enabled = true;
+            }
+
         }
+
     }
 
     public void DisableHandCollider()
     {
-        foreach (var item in handColliders) 
+        if (interactor.isSelectActive)
         {
-            item.enabled = false;
+            foreach (var item in handColliders) 
+            {
+                item.enabled = false;
+            }
         }
     }
 
@@ -103,12 +119,10 @@ public class HandPhysics : MonoBehaviour
     {
         if (isSnapTurning)
         {
-            rb.isKinematic = true;
-            rb.transform.SetPositionAndRotation(XRControllerTransform.position, XRControllerTransform.rotation);
+            transform.SetPositionAndRotation(XRControllerTransform.position, XRControllerTransform.rotation);
         }
         else
         {
-            rb.isKinematic = false;
             // Calculate the desired velocity to reach the XRControllerTransform position
             Vector3 direction = XRControllerTransform.position - transform.position;
             rb.velocity = direction / Time.fixedDeltaTime;

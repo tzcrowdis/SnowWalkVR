@@ -42,6 +42,9 @@ public class SnowPileScript : MonoBehaviour
         interactionManager.SelectEnter(args.interactorObject, snowball.GetComponent<XRGrabInteractable>());
         snowball.GetComponent<SnowBall>().setSnowballHover(false);
 
+        //Cancel hand selection
+        interactionManager.SelectExit(args.interactorObject, this.GetComponent<XRSimpleInteractable>());
+
         // destroy next snowball
         Destroy(transform.GetChild(transform.childCount - 1).gameObject);
 
