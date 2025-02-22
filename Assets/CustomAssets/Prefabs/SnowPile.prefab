@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 349936976739739259}
   - component: {fileID: 4891346734671360341}
   - component: {fileID: 5481680145170619275}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: SnowPile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -366,6 +366,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SnowBall (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 7be17ddc1e1d4c94ab82f6ee3057d2d2, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -443,6 +447,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 7be17ddc1e1d4c94ab82f6ee3057d2d2, type: 3}
       propertyPath: m_Name
       value: SnowBall (22)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 7be17ddc1e1d4c94ab82f6ee3057d2d2, type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -522,6 +530,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SnowBall (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 7be17ddc1e1d4c94ab82f6ee3057d2d2, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -599,6 +611,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 7be17ddc1e1d4c94ab82f6ee3057d2d2, type: 3}
       propertyPath: m_Name
       value: SnowBall (24)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 7be17ddc1e1d4c94ab82f6ee3057d2d2, type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -678,6 +694,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SnowBall (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 7be17ddc1e1d4c94ab82f6ee3057d2d2, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -755,6 +775,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 7be17ddc1e1d4c94ab82f6ee3057d2d2, type: 3}
       propertyPath: m_Name
       value: SnowBall (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 7be17ddc1e1d4c94ab82f6ee3057d2d2, type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -834,6 +858,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SnowBall (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 7be17ddc1e1d4c94ab82f6ee3057d2d2, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -911,6 +939,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 7be17ddc1e1d4c94ab82f6ee3057d2d2, type: 3}
       propertyPath: m_Name
       value: SnowBall (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 7be17ddc1e1d4c94ab82f6ee3057d2d2, type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -990,6 +1022,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SnowBall (10)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 7be17ddc1e1d4c94ab82f6ee3057d2d2, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1067,6 +1103,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 7be17ddc1e1d4c94ab82f6ee3057d2d2, type: 3}
       propertyPath: m_Name
       value: SnowBall
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 7be17ddc1e1d4c94ab82f6ee3057d2d2, type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1146,6 +1186,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SnowBall (25)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 7be17ddc1e1d4c94ab82f6ee3057d2d2, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1223,6 +1267,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 7be17ddc1e1d4c94ab82f6ee3057d2d2, type: 3}
       propertyPath: m_Name
       value: SnowBall (21)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 7be17ddc1e1d4c94ab82f6ee3057d2d2, type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1302,6 +1350,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SnowBall (18)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 7be17ddc1e1d4c94ab82f6ee3057d2d2, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1379,6 +1431,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 7be17ddc1e1d4c94ab82f6ee3057d2d2, type: 3}
       propertyPath: m_Name
       value: SnowBall (11)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 7be17ddc1e1d4c94ab82f6ee3057d2d2, type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1458,6 +1514,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SnowBall (20)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 7be17ddc1e1d4c94ab82f6ee3057d2d2, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1535,6 +1595,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 7be17ddc1e1d4c94ab82f6ee3057d2d2, type: 3}
       propertyPath: m_Name
       value: SnowBall (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 7be17ddc1e1d4c94ab82f6ee3057d2d2, type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1614,6 +1678,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SnowBall (17)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 7be17ddc1e1d4c94ab82f6ee3057d2d2, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1691,6 +1759,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 7be17ddc1e1d4c94ab82f6ee3057d2d2, type: 3}
       propertyPath: m_Name
       value: SnowBall (15)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 7be17ddc1e1d4c94ab82f6ee3057d2d2, type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1770,6 +1842,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SnowBall (13)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 7be17ddc1e1d4c94ab82f6ee3057d2d2, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1847,6 +1923,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 7be17ddc1e1d4c94ab82f6ee3057d2d2, type: 3}
       propertyPath: m_Name
       value: SnowBall (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 7be17ddc1e1d4c94ab82f6ee3057d2d2, type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1926,6 +2006,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SnowBall (16)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 7be17ddc1e1d4c94ab82f6ee3057d2d2, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2003,6 +2087,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 7be17ddc1e1d4c94ab82f6ee3057d2d2, type: 3}
       propertyPath: m_Name
       value: SnowBall (9)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 7be17ddc1e1d4c94ab82f6ee3057d2d2, type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2082,6 +2170,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SnowBall (14)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 7be17ddc1e1d4c94ab82f6ee3057d2d2, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2159,6 +2251,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 7be17ddc1e1d4c94ab82f6ee3057d2d2, type: 3}
       propertyPath: m_Name
       value: SnowBall (12)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 7be17ddc1e1d4c94ab82f6ee3057d2d2, type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2238,6 +2334,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SnowBall (23)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 7be17ddc1e1d4c94ab82f6ee3057d2d2, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2316,6 +2416,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SnowBall (19)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 7be17ddc1e1d4c94ab82f6ee3057d2d2, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2393,6 +2497,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 7be17ddc1e1d4c94ab82f6ee3057d2d2, type: 3}
       propertyPath: m_Name
       value: SnowBall (26)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 7be17ddc1e1d4c94ab82f6ee3057d2d2, type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

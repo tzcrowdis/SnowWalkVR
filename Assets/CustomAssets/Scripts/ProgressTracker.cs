@@ -30,7 +30,7 @@ public class ProgressTracker : MonoBehaviour
         GetComponent<CrowSpawner>().enabled = false;
         act = 0;
 
-        ghostNavMesh.gameObject.SetActive(false);
+        ghostNavMesh.gameObject.SetActive(true);
         wendigoNavMesh.gameObject.SetActive(false);
     }
 
@@ -67,14 +67,13 @@ public class ProgressTracker : MonoBehaviour
             GetComponent<CrowSpawner>().enabled = false;
             foreach (GameObject crow in GameObject.FindGameObjectsWithTag("Crow"))
                 Destroy(crow);
-
+            
             // ghost nav surface
-            ghostNavMesh.gameObject.SetActive(true);
-            ghostNavMesh.BuildNavMesh();
-
+            //ghostNavMesh.gameObject.SetActive(true);
+            
             // spawn in bonfire
-            bonfire = Instantiate(bonfirePrefab); // TODO set position
-
+            bonfire = Instantiate(bonfirePrefab, BonfireSpawnPosition(), Quaternion.identity);
+            
             act = 2;
         }
         else if (act == 2 && actThreeStartTime < gameTime)
@@ -87,12 +86,17 @@ public class ProgressTracker : MonoBehaviour
             // toggle ghost and wendigo nav meshes
             ghostNavMesh.gameObject.SetActive(false);
             wendigoNavMesh.gameObject.SetActive(true);
-            wendigoNavMesh.BuildNavMesh();
 
             // spawn in wendigo
             wendigo = Instantiate(wendigoPrefab);
 
             act = 3;
         }
+    }
+
+    Vector3 BonfireSpawnPosition()
+    {
+        float spawnDistance = 40f;
+        return player.transform.position + player.transform.forward * spawnDistance;
     }
 }

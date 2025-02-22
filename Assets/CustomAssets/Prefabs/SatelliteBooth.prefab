@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1951425838357045}
   - component: {fileID: 5464308370773555856}
   - component: {fileID: 5783070313583680820}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Satellite Booth
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 8202094496339789868}
   - component: {fileID: 4849099737513933120}
   - component: {fileID: 7656454387506184639}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Point Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -210,7 +210,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4117589480020591338}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: SatelliteBooth
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -248,7 +248,7 @@ GameObject:
   - component: {fileID: 6088474213297506268}
   - component: {fileID: 1585015643762295838}
   - component: {fileID: 4642746822019702471}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Screen
   m_TagString: Untagged
   m_Icon: {fileID: 0}
