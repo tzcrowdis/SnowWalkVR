@@ -677,10 +677,6 @@ PrefabInstance:
       propertyPath: m_SelectEntered.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 599488742}
-    - target: {fileID: 7351720685823345080, guid: 6f67e6af761717447b1020fe038b507f, type: 3}
-      propertyPath: m_SelectExited.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: EnableHandCollider
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -697,6 +693,10 @@ PrefabInstance:
     - target: {fileID: 3634208621248845904, guid: 26dd8659e34ea9d429fffab89c2043c0, type: 3}
       propertyPath: m_Name
       value: SatelliteBooth
+      objectReference: {fileID: 0}
+    - target: {fileID: 3634208621248845904, guid: 26dd8659e34ea9d429fffab89c2043c0, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4117589480020591338, guid: 26dd8659e34ea9d429fffab89c2043c0, type: 3}
       propertyPath: m_LocalPosition.x
