@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography.X509Certificates;
 using UnityEngine;
 
 public class ConjuringRitual : MonoBehaviour
@@ -46,25 +47,19 @@ public class ConjuringRitual : MonoBehaviour
         }
     }
 
-    void Update()
-    {
-        /*
-        // check for all ghosts in position
-        for (int i = 0; i < ghostCount; i++)
-        {
-            if (!ghosts[i].GetComponent<GhostBrideBehavior>().chanting)
-                break;
-
-            if (i == ghostCount - 1)
-            {
-                // TODO start next step of ritual...
-            }
-        }
-        */
-    }
-
     void OnDestroy()
     {
-        // TODO 
+        // leave behind the pieces
+        GameObject kindling = transform.GetChild(1).gameObject;
+        kindling.transform.parent = null;
+
+        GameObject sticks = transform.GetChild(0).gameObject;
+        sticks.transform.parent = null;
+
+        ParticleSystem fire = sticks.transform.GetChild(0).GetComponent<ParticleSystem>();
+        fire.transform.parent = null;
+        fire.Stop(false, ParticleSystemStopBehavior.StopEmitting);
+
+        Destroy(sticks);
     }
 }

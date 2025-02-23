@@ -7,10 +7,15 @@ public class ProgressTracker : MonoBehaviour
 {
     float gameTime;
 
+    [Header("Act Start Times [minutes]")]
+    [Tooltip("start time in minutes (not relative to previous act)")]
     public float actOneStartTime;
+    [Tooltip("start time in minutes (not relative to previous act)")]
     public float actTwoStartTime;
+    [Tooltip("start time in minutes (not relative to previous act)")]
     public float actThreeStartTime;
 
+    [Header("Objects Relevant to Progression")]
     public GameObject player;
 
     public GameObject strangeTreePrefab;
@@ -27,10 +32,14 @@ public class ProgressTracker : MonoBehaviour
 
     void Start()
     {
+        actOneStartTime *= 60;
+        actTwoStartTime *= 60;
+        actThreeStartTime *= 60;
+        
         GetComponent<CrowSpawner>().enabled = false;
         act = 0;
 
-        ghostNavMesh.gameObject.SetActive(true);
+        ghostNavMesh.gameObject.SetActive(false);
         wendigoNavMesh.gameObject.SetActive(false);
     }
 
@@ -44,9 +53,6 @@ public class ProgressTracker : MonoBehaviour
 
     void UpdateAct()
     {
-        //Debug.Log("Game Time: " + gameTime);
-        
-        // TODO test
         // TODO add act specific ambient music???
         if (act == 0 && actOneStartTime < gameTime)
         {
@@ -69,7 +75,7 @@ public class ProgressTracker : MonoBehaviour
                 Destroy(crow);
             
             // ghost nav surface
-            //ghostNavMesh.gameObject.SetActive(true);
+            ghostNavMesh.gameObject.SetActive(true);
             
             // spawn in bonfire
             bonfire = Instantiate(bonfirePrefab, BonfireSpawnPosition(), Quaternion.identity);
@@ -87,8 +93,8 @@ public class ProgressTracker : MonoBehaviour
             ghostNavMesh.gameObject.SetActive(false);
             wendigoNavMesh.gameObject.SetActive(true);
 
-            // spawn in wendigo
-            wendigo = Instantiate(wendigoPrefab);
+            // spawn in wendigo (at burnt bonfire position and facing the player)
+            wendigo = Instantiate(wendigoPrefab, WendigoSpawnLocation(), Quaternion.identity);
 
             act = 3;
         }
@@ -97,6 +103,15 @@ public class ProgressTracker : MonoBehaviour
     Vector3 BonfireSpawnPosition()
     {
         float spawnDistance = 40f;
-        return player.transform.position + player.transform.forward * spawnDistance;
+        Vector3 spawnPosition = player.transform.position + player.transform.forward * spawnDistance;
+        spawnPosition.y = 0.2f;
+        return spawnPosition;
+    }
+
+    Vector3 WendigoSpawnLocation()
+    {
+        float spawnDistance = 40f;
+        Vector3 spawnPosition = player.transform.position - player.transform.forward * spawnDistance;
+        return spawnPosition;
     }
 }

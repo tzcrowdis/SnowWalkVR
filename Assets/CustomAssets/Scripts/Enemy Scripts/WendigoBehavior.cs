@@ -197,9 +197,10 @@ public class WendigoBehavior : MonoBehaviour
         return !agent.pathPending && agent.remainingDistance < agent.stoppingDistance;
     }
 
-    public void HitBySnowball()
+    void OnCollisionEnter(Collision collision)
     {
-        agent.speed = 0f;
+        if (collision.gameObject.tag != "Snowball")
+            return;
 
         // play animation? like shaking off
 
