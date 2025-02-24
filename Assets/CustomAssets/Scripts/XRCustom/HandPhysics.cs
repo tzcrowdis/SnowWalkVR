@@ -126,7 +126,7 @@ public class HandPhysics : MonoBehaviour
         {
 
             // Calculate the desired velocity to reach the XRControllerTransform position
-            Vector3 direction = XRControllerTransform.position - transform.localPosition;
+            Vector3 direction = XRControllerTransform.position - transform.position;
             rb.velocity = direction / Time.deltaTime;
 
 
@@ -141,7 +141,7 @@ public class HandPhysics : MonoBehaviour
                 angle -= 360f;
             }
 
-            rb.angularVelocity = (angle * axis) * Mathf.Deg2Rad / Time.fixedDeltaTime;
+            rb.angularVelocity = (angle * axis) * Mathf.Deg2Rad / Time.deltaTime;
         }
     }
 }
