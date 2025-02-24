@@ -4815,7 +4815,7 @@ ParticleSystemRenderer:
   m_Flip: {x: 0, y: 0, z: 0}
   m_EnableGPUInstancing: 1
   m_ApplyActiveColorSpace: 1
-  m_AllowRoll: 1
+  m_AllowRoll: 0
   m_FreeformStretching: 0
   m_RotateWithStretchDirection: 1
   m_UseCustomVertexStreams: 0
@@ -5017,6 +5017,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 3bed0cc7eb9ca0c4d99294521fbefe66, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2694028653819215477}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 3bed0cc7eb9ca0c4d99294521fbefe66, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8704507731697349642}
   m_SourcePrefab: {fileID: 100100000, guid: 3bed0cc7eb9ca0c4d99294521fbefe66, type: 3}
 --- !u!4 &718451356992994871 stripped
 Transform:
@@ -5045,3 +5048,24 @@ MonoBehaviour:
   distFromFire: 10
   spawnDist: 40
   spawnPosRandomFactor: 15
+--- !u!135 &8704507731697349642
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4916115897255567041}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 2
+  m_Center: {x: 0, y: 1, z: 0}

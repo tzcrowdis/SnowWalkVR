@@ -26,25 +26,29 @@ public class GhostBrideBehavior : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
         chanting = false;
-        spawnTime = 0;
         chant = GetComponent<AudioSource>();
+    }
+
+    private void Start()
+    {
+        spawnTime = 0;
     }
 
     void Update()
     {
-        // HACK conjuring ritual script wasn't setting bonfire object
+        // conjuring ritual script wasn't setting bonfire object
         if (bonfire == null)
             bonfire = GameObject.Find("Bonfire(Clone)");
         
         transform.LookAt(agent.destination);
 
-        // reached location -> look at fire and start chanting
-        if (agent.remainingDistance < agent.stoppingDistance & agent.velocity.sqrMagnitude == 0f)
+        if (spawnTime > 5f) // HACK to prevent chanting at start up
         {
-            transform.LookAt(bonfire.transform);
-            
-            if (spawnTime > 1f) // HACK prevent chanting at start up
+            // reached location -> look at fire and start chanting
+            if (agent.remainingDistance < agent.stoppingDistance & agent.velocity.sqrMagnitude == 0f)
             {
+                transform.LookAt(bonfire.transform);
+
                 animator.SetBool("chanting", true);
                 chanting = true;
 

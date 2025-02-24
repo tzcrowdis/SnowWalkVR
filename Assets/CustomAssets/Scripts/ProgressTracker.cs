@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.AI.Navigation;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class ProgressTracker : MonoBehaviour
 {
@@ -75,6 +76,7 @@ public class ProgressTracker : MonoBehaviour
                 Destroy(crow);
             
             // ghost nav surface
+            player.GetComponent<NavMeshObstacle>().enabled = false;
             ghostNavMesh.gameObject.SetActive(true);
             
             // spawn in bonfire
@@ -92,6 +94,8 @@ public class ProgressTracker : MonoBehaviour
             // toggle ghost and wendigo nav meshes
             ghostNavMesh.gameObject.SetActive(false);
             wendigoNavMesh.gameObject.SetActive(true);
+
+            player.GetComponent<NavMeshObstacle>().enabled = true;
 
             // spawn in wendigo (at burnt bonfire position and facing the player)
             wendigo = Instantiate(wendigoPrefab, WendigoSpawnLocation(), Quaternion.identity);

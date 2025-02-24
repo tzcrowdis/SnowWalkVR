@@ -92,6 +92,7 @@ public class Crow : MonoBehaviour
 
             state = CrowState.TakeOff;
 
+            crowStartled.pitch += Random.Range(-0.5f, 0.5f);
             crowStartled.Play();
         }
     }

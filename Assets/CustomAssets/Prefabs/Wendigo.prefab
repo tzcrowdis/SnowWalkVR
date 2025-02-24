@@ -170,7 +170,7 @@ MonoBehaviour:
   walking: 0
   walkSpeed: 3.5
   sprintSpeed: 7
-  circlingRadius: 30
+  circlingRadius: 50
   circlingDestination: {fileID: 0}
   testChargeCountLimit: 3
   testChargeDistance: 8

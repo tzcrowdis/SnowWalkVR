@@ -23,13 +23,13 @@ public class ConjuringRitual : MonoBehaviour
         float angleIncrement = 360 / ghostCount;
         for (int i = 0; i < ghostCount; i++)
         {
-            destinations[i] = gameObject.transform.position;
+            destinations[i] = transform.position;
             destinations[i].x += distFromFire * Mathf.Cos(angleIncrement * i * Mathf.Deg2Rad);
             destinations[i].z += distFromFire * Mathf.Sin(angleIncrement * i * Mathf.Deg2Rad);
         }
 
         // set the center of where all ghosts will spawn
-        Vector3 centerPosition = gameObject.transform.forward * spawnDist;
+        Vector3 centerPosition = transform.forward * spawnDist + transform.position;
         Vector3 spawnPosition;
 
         // spawn all ghosts and set their destinations
@@ -42,7 +42,7 @@ public class ConjuringRitual : MonoBehaviour
                     centerPosition.z + Random.Range(-spawnPosRandomFactor, spawnPosRandomFactor)
                 );
             ghosts[i] = Instantiate(ghostPrefab, spawnPosition, Quaternion.identity);
-            ghosts[i].transform.LookAt(gameObject.transform);
+            ghosts[i].transform.LookAt(transform);
             ghosts[i].GetComponent<GhostBrideBehavior>().agent.destination = destinations[i];
         }
     }

@@ -172,7 +172,7 @@ public class WendigoBehavior : MonoBehaviour
     {
         if (!fleeDestSet)
         {
-            fleeDestination = (transform.position - prey.position).normalized * circlingRadius * 2f + prey.position;
+            fleeDestination = (transform.position - prey.position).normalized * circlingRadius * 1.1f + prey.position;
             fleeDestSet = true;
         }
             
