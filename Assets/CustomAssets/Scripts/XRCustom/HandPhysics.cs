@@ -24,6 +24,7 @@ public class HandPhysics : MonoBehaviour
 
     //The controller interactor
     private XRDirectInteractor interactor;
+    [SerializeField] private Transform playerT;
 
 
 
@@ -123,9 +124,10 @@ public class HandPhysics : MonoBehaviour
         }
         else
         {
+
             // Calculate the desired velocity to reach the XRControllerTransform position
-            Vector3 direction = XRControllerTransform.position - transform.position;
-            rb.velocity = direction / Time.fixedDeltaTime;
+            Vector3 direction = XRControllerTransform.position - transform.localPosition;
+            rb.velocity = direction / Time.deltaTime;
 
 
             // Calculate the desired angular velocity to reach the XRControllerTransform rotation

@@ -838,7 +838,7 @@ Rigidbody:
   m_ImplicitTensor: 1
   m_UseGravity: 0
   m_IsKinematic: 0
-  m_Interpolate: 1
+  m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 2
 --- !u!114 &2238740281022490072
@@ -857,7 +857,8 @@ MonoBehaviour:
   XRLocomotionTransform: {fileID: 0}
   snapTurnAction: {fileID: -8525429354371678379, guid: c348712bda248c246b8c49b3db54643f, type: 3}
   handToBodyJoint: {fileID: 0}
-  playerRB: {fileID: 6401853980406436512}
+  playerRB: {fileID: 0}
+  playerT: {fileID: 0}
 --- !u!137 &5741688910623993304
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 0
@@ -1814,7 +1815,7 @@ Rigidbody:
   m_ImplicitTensor: 1
   m_UseGravity: 0
   m_IsKinematic: 0
-  m_Interpolate: 1
+  m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 2
 --- !u!114 &5147956995694356498
@@ -1833,7 +1834,8 @@ MonoBehaviour:
   XRLocomotionTransform: {fileID: 0}
   snapTurnAction: {fileID: -8525429354371678379, guid: c348712bda248c246b8c49b3db54643f, type: 3}
   handToBodyJoint: {fileID: 0}
-  playerRB: {fileID: 6401853980406436512}
+  playerRB: {fileID: 0}
+  playerT: {fileID: 8185257837699733315}
 --- !u!137 &5265677044215027918
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 0
@@ -1966,7 +1968,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8185257837699733315}
-  - component: {fileID: 6401853980406436512}
+  - component: {fileID: 8554002802166529816}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -1993,33 +1995,19 @@ Transform:
   - {fileID: 2010243025148234203}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!54 &6401853980406436512
-Rigidbody:
+--- !u!114 &8554002802166529816
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7713462349611939976}
-  serializedVersion: 4
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06562d9c3421729469d6eacdfd5df558, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  XRPlayerTransform: {fileID: 0}
 --- !u!1 &7844918144920154791
 GameObject:
   m_ObjectHideFlags: 0
