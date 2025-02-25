@@ -262,7 +262,7 @@ Light:
     m_Type: 2
     m_Resolution: -1
     m_CustomResolution: -1
-    m_Strength: 0.8
+    m_Strength: 0.6
     m_Bias: 0.05
     m_NormalBias: 0.4
     m_NearPlane: 1
@@ -545,8 +545,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1300d1d29d0c6834a935d05068a28f77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameTime: 0
   actOneStartTime: 0
-  actTwoStartTime: 1
+  actTwoStartTime: 0.25
   actThreeStartTime: 5
   player: {fileID: 1435398309}
   strangeTreePrefab: {fileID: 8068747200081088144, guid: 8acef365e9671524e9d1ff3e19d8f95b, type: 3}
@@ -696,6 +697,10 @@ PrefabInstance:
       propertyPath: m_SelectEntered.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 2051913192}
+    - target: {fileID: 5174303327102694632, guid: 6f67e6af761717447b1020fe038b507f, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5771846587790634420, guid: 6f67e6af761717447b1020fe038b507f, type: 3}
       propertyPath: m_TagString
       value: Player
@@ -716,6 +721,10 @@ PrefabInstance:
       propertyPath: m_SelectEntered.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 599488742}
+    - target: {fileID: 8496758285482414015, guid: 6f67e6af761717447b1020fe038b507f, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8777095542393024023, guid: 6f67e6af761717447b1020fe038b507f, type: 3}
       propertyPath: ShapeModule.m_Rotation.x
       value: 90

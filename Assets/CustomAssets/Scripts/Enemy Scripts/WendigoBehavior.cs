@@ -165,6 +165,7 @@ public class WendigoBehavior : MonoBehaviour
         {
             // TODO kill
             Debug.Log("KILL");
+            Application.Quit();
         }
     }
 
@@ -172,10 +173,10 @@ public class WendigoBehavior : MonoBehaviour
     {
         if (!fleeDestSet)
         {
-            fleeDestination = (transform.position - prey.position).normalized * circlingRadius * 1.1f + prey.position;
+            Vector3 fleeDirection = (transform.position - prey.position).normalized + new Vector3(Random.Range(-0.5f, 0.5f), 0f, Random.Range(-0.5f, 0.5f));
+            fleeDestination = fleeDirection.normalized * circlingRadius * 1.1f + prey.position;
             fleeDestSet = true;
-        }
-            
+        }  
 
         agent.destination = fleeDestination;
         agent.stoppingDistance = 0.1f;
