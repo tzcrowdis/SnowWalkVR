@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 4849099737513933120}
   - component: {fileID: 7656454387506184639}
   m_Layer: 10
-  m_Name: Point Light
+  m_Name: Screen Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -109,12 +109,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2571726028898253840}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.158, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalRotation: {x: -0, y: 0.70710677, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0, z: -6.67}
+  m_LocalScale: {x: 21.453638, y: 2.759018, z: 2.0657375}
+  m_ConstrainProportionsScale: 1
   m_Children: []
-  m_Father: {fileID: 4117589480020591338}
+  m_Father: {fileID: 7284439507936303470}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!108 &4849099737513933120
 Light:
@@ -234,7 +234,6 @@ Transform:
   m_Children:
   - {fileID: 1951425838357045}
   - {fileID: 7284439507936303470}
-  - {fileID: 8202094496339789868}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!135 &5799984901494783564
@@ -302,7 +301,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 1.1157638, z: 0}
   m_LocalScale: {x: 0.4840886, y: 0.3624478, z: 0.046612144}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 8202094496339789868}
   m_Father: {fileID: 4117589480020591338}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &6125830624071770673
