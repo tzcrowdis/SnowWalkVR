@@ -6,7 +6,7 @@ using UnityEngine.AI;
 
 public class ProgressTracker : MonoBehaviour
 {
-    float gameTime;
+    public float gameTime;
 
     [Header("Act Start Times [minutes]")]
     [Tooltip("start time in minutes (not relative to previous act)")]
@@ -42,11 +42,13 @@ public class ProgressTracker : MonoBehaviour
 
         ghostNavMesh.gameObject.SetActive(false);
         wendigoNavMesh.gameObject.SetActive(false);
+
+        gameTime = 0;
     }
 
     void Update()
     {
-        gameTime = Time.realtimeSinceStartup;
+        gameTime += Time.deltaTime;
 
         if (act != 3)
             UpdateAct();
@@ -114,7 +116,7 @@ public class ProgressTracker : MonoBehaviour
 
     Vector3 WendigoSpawnLocation()
     {
-        float spawnDistance = 40f;
+        float spawnDistance = 55f; // set based on circling radius
         Vector3 spawnPosition = player.transform.position - player.transform.forward * spawnDistance;
         return spawnPosition;
     }

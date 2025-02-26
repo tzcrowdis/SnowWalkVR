@@ -121,7 +121,8 @@ public class WendigoBehavior : MonoBehaviour
         agent.stoppingDistance = 0.1f;
 
         wendigoAnimator.SetBool("Walking", true);
-        agent.speed = walkSpeed;
+        //agent.speed = walkSpeed;
+        agent.speed = sprintSpeed;
 
         // if behind player -> charge or test charge 
         if (WendigoAtDestination())
@@ -162,9 +163,13 @@ public class WendigoBehavior : MonoBehaviour
 
         // if within attack distance -> kill prey
         if (WendigoAtDestination())
-        {
-            // TODO kill
+        {           
             Debug.Log("KILL");
+            #if UNITY_EDITOR
+                UnityEditor.EditorApplication.isPlaying = false;
+            #else
+                Application.Quit();
+            #endif
         }
     }
 
@@ -172,10 +177,10 @@ public class WendigoBehavior : MonoBehaviour
     {
         if (!fleeDestSet)
         {
-            fleeDestination = (transform.position - prey.position).normalized * circlingRadius * 1.1f + prey.position;
+            Vector3 fleeDirection = (transform.position - prey.position).normalized + new Vector3(Random.Range(-0.5f, 0.5f), 0f, Random.Range(-0.5f, 0.5f));
+            fleeDestination = fleeDirection.normalized * circlingRadius * 1.1f + prey.position;
             fleeDestSet = true;
-        }
-            
+        }  
 
         agent.destination = fleeDestination;
         agent.stoppingDistance = 0.1f;

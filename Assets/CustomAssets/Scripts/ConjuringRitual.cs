@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Security.Cryptography.X509Certificates;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class ConjuringRitual : MonoBehaviour
 {
@@ -15,6 +16,11 @@ public class ConjuringRitual : MonoBehaviour
     public float spawnPosRandomFactor;
 
     Vector3[] destinations;
+
+    bool playerObserving;
+    bool allChanting;
+    float conjuringTime;
+    public float ritualCompleteTime;
 
     void Start()
     {
@@ -36,15 +42,71 @@ public class ConjuringRitual : MonoBehaviour
         ghosts = new GameObject[ghostCount];
         for (int i = 0; i < ghostCount; i++)
         {
-            spawnPosition = new Vector3(
-                    centerPosition.x + Random.Range(-spawnPosRandomFactor, spawnPosRandomFactor),
-                    0,
-                    centerPosition.z + Random.Range(-spawnPosRandomFactor, spawnPosRandomFactor)
-                );
+            RandomSpawnPointOnMesh(centerPosition, spawnPosRandomFactor, out spawnPosition);
+
             ghosts[i] = Instantiate(ghostPrefab, spawnPosition, Quaternion.identity);
             ghosts[i].transform.LookAt(transform);
             ghosts[i].GetComponent<GhostBrideBehavior>().agent.destination = destinations[i];
         }
+
+        // early exit variables
+        allChanting = false;
+        playerObserving = false;
+        conjuringTime = 0;
+    }
+
+    bool RandomSpawnPointOnMesh(Vector3 center, float radius, out Vector3 result)
+    {
+        // find valid spawn point on the mesh for the ghosts
+        for (int i = 0; i < 30; i++)
+        {
+            Vector3 randomPoint = center + Random.insideUnitSphere * radius;
+            NavMeshHit hit;
+            if (NavMesh.SamplePosition(randomPoint, out hit, 1.0f, NavMesh.AllAreas))
+            {
+                result = hit.position;
+                return true;
+            }
+        }
+
+        // no valid point found then spawn in fire
+        result = transform.position;
+        return false;
+    }
+
+    private void Update()
+    {
+        // early exit of act 2
+        if (conjuringTime > ritualCompleteTime)
+        {
+            ProgressTracker world = GameObject.Find("World").GetComponent<ProgressTracker>();
+            world.gameTime = world.actThreeStartTime;
+        }
+
+        allChanting = true;
+        foreach (GameObject ghost in ghosts)
+        {
+            if (!ghost.GetComponent<GhostBrideBehavior>().chanting)
+            {
+                allChanting = false;
+                break;
+            }
+        }
+
+        if (allChanting & playerObserving)
+            conjuringTime += Time.deltaTime;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Player")
+            playerObserving = true;
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.tag == "Player")
+            playerObserving = false;
     }
 
     void OnDestroy()
