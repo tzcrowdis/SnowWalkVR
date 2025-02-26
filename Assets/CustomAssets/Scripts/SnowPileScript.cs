@@ -10,7 +10,7 @@ public class SnowPileScript : MonoBehaviour
 
     public XRInteractionManager interactionManager;
 
-    void Start()
+    void Awake()
     {     
         if (interactionManager == null)
         {

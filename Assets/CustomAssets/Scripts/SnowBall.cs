@@ -7,10 +7,11 @@ public class SnowBall : MonoBehaviour
     public Material snowBallSelectedMat;
     public float breakThreshold = 0.4f;
     public AudioClip breakSound;
+    public AudioClip pickupSound;
     private AudioSource audioSource;
     private Rigidbody rb;
     private ParticleSystem snowParticleSystem;
-    private void Start()
+    private void Awake()
     {
 
         rb = GetComponent<Rigidbody>();
@@ -32,6 +33,14 @@ public class SnowBall : MonoBehaviour
         
     }
 
+    public void playPickupSound()
+    {
+        audioSource.clip = pickupSound;
+        audioSource.pitch = Random.Range(0.8f, 1.2f);
+        audioSource.Play();
+
+    }
+
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -45,13 +54,6 @@ public class SnowBall : MonoBehaviour
             audioSource.clip = breakSound;
             audioSource.pitch = Random.Range(0.8f, 1.2f);
             audioSource.Play();
-
-            // TODO: spawn snow particles at point of collision
-            ParticleSystem poof = transform.GetChild(1).GetComponent<ParticleSystem>();
-            poof.transform.parent = null;
-            poof.transform.localScale = Vector3.one;
-            poof.transform.rotation = Quaternion.LookRotation(collision.contacts[0].normal);
-            poof.Play();
 
             // Hide and freeze object
             GetComponent<MeshRenderer>().enabled = false;

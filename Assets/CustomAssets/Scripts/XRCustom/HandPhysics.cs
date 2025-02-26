@@ -8,11 +8,10 @@ public class HandPhysics : MonoBehaviour
 {
 
     public Transform XRControllerTransform;
-    public Transform XRLocomotionTransform;
     private Rigidbody rb;
     private Collider[] handColliders;
     private bool isSnapTurning = false;
-    public InputActionReference snapTurnAction;
+    //public InputActionReference snapTurnAction;
 
     //The controller interactor
     private XRDirectInteractor interactor;
@@ -36,10 +35,12 @@ public class HandPhysics : MonoBehaviour
 
         interactor = XRControllerTransform.GetComponentInChildren<XRDirectInteractor>();
 
+        /*
         //Subscribe to snap turn events
         snapTurnAction.action.Enable();
         snapTurnAction.action.performed += OnSnapTurnPerformed;
         snapTurnAction.action.canceled += OnSnapTurnCanceled;
+        */
     }
 
 
@@ -96,6 +97,7 @@ public class HandPhysics : MonoBehaviour
         }
     }
 
+/*
     private void OnSnapTurnPerformed(InputAction.CallbackContext context)
     {
         isSnapTurning = true;
@@ -105,28 +107,13 @@ public class HandPhysics : MonoBehaviour
     {
         isSnapTurning = false;
     }
-
-    void Update()
-    {
-        if (isSnapTurning)
-        {
-            rb.isKinematic = true;
-            transform.SetPositionAndRotation(XRControllerTransform.position, XRControllerTransform.rotation);
-        }
-        else
-        {
-            rb.isKinematic = false;
-        }
-
-    }
+    */
 
     void FixedUpdate()
     {
-        if (!isSnapTurning)
-            {
 
+            rb.isKinematic = false;
 
-            
             // Calculate the desired velocity to reach the XRControllerTransform position
             Vector3 direction = XRControllerTransform.position - transform.position;
             rb.velocity = direction / Time.fixedDeltaTime;
@@ -144,6 +131,5 @@ public class HandPhysics : MonoBehaviour
 
             rb.angularVelocity = (angle * axis) * Mathf.Deg2Rad / Time.fixedDeltaTime;
 
-            }
-    }
+    } 
 }

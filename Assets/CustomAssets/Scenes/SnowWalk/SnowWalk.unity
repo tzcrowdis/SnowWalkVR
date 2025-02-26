@@ -153,6 +153,10 @@ PrefabInstance:
       propertyPath: XRLocomotionTransform
       value: 
       objectReference: {fileID: 125283205}
+    - target: {fileID: 3557578283558357596, guid: 4fcf497d65494384b92849de1e3ff794, type: 3}
+      propertyPath: XRPlayerTransform
+      value: 
+      objectReference: {fileID: 1435398318}
     - target: {fileID: 4549769591718943428, guid: 4fcf497d65494384b92849de1e3ff794, type: 3}
       propertyPath: XRControllerTransform
       value: 
@@ -175,7 +179,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8185257837699733315, guid: 4fcf497d65494384b92849de1e3ff794, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.98
+      value: 0.747
       objectReference: {fileID: 0}
     - target: {fileID: 8185257837699733315, guid: 4fcf497d65494384b92849de1e3ff794, type: 3}
       propertyPath: m_LocalPosition.z
@@ -681,14 +685,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4563192654117359654, guid: 6f67e6af761717447b1020fe038b507f, type: 3}
-      propertyPath: m_RenderShadows
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 4589824897127893546, guid: 6f67e6af761717447b1020fe038b507f, type: 3}
       propertyPath: m_AttachTransform
       value: 
       objectReference: {fileID: 1836578706}
+    - target: {fileID: 4589824897127893546, guid: 6f67e6af761717447b1020fe038b507f, type: 3}
+      propertyPath: m_SelectActionTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4589824897127893546, guid: 6f67e6af761717447b1020fe038b507f, type: 3}
+      propertyPath: m_InteractionLayers.m_Bits
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 4589824897127893546, guid: 6f67e6af761717447b1020fe038b507f, type: 3}
       propertyPath: m_SelectExited.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -697,14 +705,6 @@ PrefabInstance:
       propertyPath: m_SelectEntered.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 2051913192}
-    - target: {fileID: 5174303327102694632, guid: 6f67e6af761717447b1020fe038b507f, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5174303327102694638, guid: 6f67e6af761717447b1020fe038b507f, type: 3}
-      propertyPath: far clip plane
-      value: 100
-      objectReference: {fileID: 0}
     - target: {fileID: 5771846587790634420, guid: 6f67e6af761717447b1020fe038b507f, type: 3}
       propertyPath: m_TagString
       value: Player
@@ -725,26 +725,6 @@ PrefabInstance:
       propertyPath: m_SelectEntered.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 599488742}
-    - target: {fileID: 8496758285482414015, guid: 6f67e6af761717447b1020fe038b507f, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8777095542393024023, guid: 6f67e6af761717447b1020fe038b507f, type: 3}
-      propertyPath: ShapeModule.m_Rotation.x
-      value: 90
-      objectReference: {fileID: 0}
-    - target: {fileID: 8777095542393024023, guid: 6f67e6af761717447b1020fe038b507f, type: 3}
-      propertyPath: ShapeModule.alignToDirection
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8892217405938934434, guid: 6f67e6af761717447b1020fe038b507f, type: 3}
-      propertyPath: m_LengthScale
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8892217405938934434, guid: 6f67e6af761717447b1020fe038b507f, type: 3}
-      propertyPath: m_VelocityScale
-      value: 2
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -820,6 +800,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4117589480020591338, guid: 26dd8659e34ea9d429fffab89c2043c0, type: 3}
       propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9085881655069128102, guid: 26dd8659e34ea9d429fffab89c2043c0, type: 3}
+      propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []

@@ -35,5 +35,6 @@ public class PlayerScript : MonoBehaviour
         */
 
         transform.position = XRPlayerTransform.position;
+        transform.rotation = XRPlayerTransform.rotation;
     }
 }
