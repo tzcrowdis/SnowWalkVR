@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2085510973376260370}
   - component: {fileID: 7162621007946767325}
   m_Layer: 0
-  m_Name: Point Light
+  m_Name: Fire Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -26,12 +26,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1584459445357468814}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.105, y: 3.572, z: -0}
+  m_LocalRotation: {x: -0, y: -0.70710677, z: -0, w: 0.7071069}
+  m_LocalPosition: {x: -0, y: 3.572, z: -0.105000466}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 5724741362656593019}
+  m_Father: {fileID: 718451356992994871}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!108 &2085510973376260370
 Light:
@@ -5128,19 +5128,19 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 3bed0cc7eb9ca0c4d99294521fbefe66, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 2421365388290503352}
     - targetCorrespondingSourceObject: {fileID: 4683909907817848231, guid: 3bed0cc7eb9ca0c4d99294521fbefe66, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3623466560914816628}
+    - targetCorrespondingSourceObject: {fileID: 4683909907817848231, guid: 3bed0cc7eb9ca0c4d99294521fbefe66, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2421365388290503352}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 3bed0cc7eb9ca0c4d99294521fbefe66, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2694028653819215477}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 3bed0cc7eb9ca0c4d99294521fbefe66, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 8704507731697349642}
+      addedObject: {fileID: 694823811784461237}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 3bed0cc7eb9ca0c4d99294521fbefe66, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8123587963680779655}
@@ -5173,8 +5173,8 @@ MonoBehaviour:
   spawnDist: 40
   spawnPosRandomFactor: 15
   ritualCompleteTime: 30
---- !u!135 &8704507731697349642
-SphereCollider:
+--- !u!136 &694823811784461237
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -5191,8 +5191,10 @@ SphereCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 2
+  serializedVersion: 2
+  m_Radius: 1.75
+  m_Height: 5
+  m_Direction: 1
   m_Center: {x: 0, y: 1, z: 0}
 --- !u!135 &8123587963680779655
 SphereCollider:
@@ -5215,8 +5217,3 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 15
   m_Center: {x: 0, y: 0, z: 0}
---- !u!4 &5724741362656593019 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 3bed0cc7eb9ca0c4d99294521fbefe66, type: 3}
-  m_PrefabInstance: {fileID: 5258203860381246352}
-  m_PrefabAsset: {fileID: 0}

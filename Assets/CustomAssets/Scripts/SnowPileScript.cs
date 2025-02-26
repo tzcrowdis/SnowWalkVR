@@ -10,7 +10,6 @@ public class SnowPileScript : MonoBehaviour
 
     public XRInteractionManager interactionManager;
 
-    // Start is called before the first frame update
     void Start()
     {     
         if (interactionManager == null)
@@ -19,10 +18,11 @@ public class SnowPileScript : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
     void Update()
     {
-
+        // destroy snow pile if empty
+        if (transform.childCount == 0)
+            Destroy(gameObject);
     }
 
     public void setSnowballMaterial(Material material)
@@ -47,9 +47,5 @@ public class SnowPileScript : MonoBehaviour
 
         // destroy next snowball
         Destroy(transform.GetChild(transform.childCount - 1).gameObject);
-
-        // destroy snow pile if empty
-        if (transform.childCount == 0)
-            Destroy(gameObject);
     }
 }

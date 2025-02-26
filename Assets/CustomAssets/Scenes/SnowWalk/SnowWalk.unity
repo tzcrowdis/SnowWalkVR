@@ -548,7 +548,7 @@ MonoBehaviour:
   gameTime: 0
   actOneStartTime: 0
   actTwoStartTime: 0.25
-  actThreeStartTime: 5
+  actThreeStartTime: 0.5
   player: {fileID: 1435398309}
   strangeTreePrefab: {fileID: 8068747200081088144, guid: 8acef365e9671524e9d1ff3e19d8f95b, type: 3}
   bonfirePrefab: {fileID: 4916115897255567041, guid: 78b720a83d3afb347a0a401e6a345c69, type: 3}
@@ -700,6 +700,10 @@ PrefabInstance:
     - target: {fileID: 5174303327102694632, guid: 6f67e6af761717447b1020fe038b507f, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5174303327102694638, guid: 6f67e6af761717447b1020fe038b507f, type: 3}
+      propertyPath: far clip plane
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 5771846587790634420, guid: 6f67e6af761717447b1020fe038b507f, type: 3}
       propertyPath: m_TagString
