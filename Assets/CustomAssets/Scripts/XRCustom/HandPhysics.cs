@@ -1,7 +1,4 @@
-using System.Security.Cryptography;
 using UnityEngine;
-using UnityEngine.AI;
-using UnityEngine.InputSystem;
 using UnityEngine.XR.Interaction.Toolkit;
 
 public class HandPhysics : MonoBehaviour
@@ -16,8 +13,6 @@ public class HandPhysics : MonoBehaviour
     //The controller interactor
     private XRDirectInteractor interactor;
     public CharacterController characterController;
-
-    private Vector3 lastPlayerPosition;
 
     // Start is called before the first frame update
     void Start()
