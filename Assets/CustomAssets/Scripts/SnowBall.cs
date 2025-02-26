@@ -1,4 +1,6 @@
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 using UnityEngine.XR.Interaction.Toolkit;
 
 public class SnowBall : MonoBehaviour
@@ -8,6 +10,7 @@ public class SnowBall : MonoBehaviour
     public float breakThreshold = 0.4f;
     public AudioClip breakSound;
     public AudioClip pickupSound;
+    public DecalProjector snowDecal;
     private AudioSource audioSource;
     private Rigidbody rb;
     private ParticleSystem snowParticleSystem;
@@ -47,7 +50,11 @@ public class SnowBall : MonoBehaviour
 
         if (rb.velocity.magnitude > breakThreshold && !collision.collider.CompareTag("Player"))
         {
-            // Play particle system
+            // Create snow decal
+            DecalProjector decalInstance = Instantiate(snowDecal, transform.position, Quaternion.LookRotation(collision.GetContact(0).normal) * snowDecal.transform.rotation); 
+            decalInstance.transform.SetParent(collision.collider.transform.parent);
+
+            // Play particle systemaw
             snowParticleSystem.Play();
 
             // Play break sound
@@ -59,6 +66,7 @@ public class SnowBall : MonoBehaviour
             GetComponent<MeshRenderer>().enabled = false;
             GetComponent<XRGrabInteractable>().enabled = false;
             rb.isKinematic = true;
+            
 
             // Destroy after sound effect is done
             Destroy(gameObject, 1f);

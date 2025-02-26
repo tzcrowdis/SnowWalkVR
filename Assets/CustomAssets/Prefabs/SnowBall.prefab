@@ -427,6 +427,7 @@ MonoBehaviour:
   breakThreshold: 0.4
   breakSound: {fileID: 8300000, guid: d56279b2329305e48be4863086885732, type: 3}
   pickupSound: {fileID: 8300000, guid: b6157d99f2ebd5a4baa9f43d165fd1a7, type: 3}
+  snowDecal: {fileID: -3866684782354814660, guid: ad269a08bdb1441418f7a15128d3a322, type: 3}
 --- !u!82 &1557853484508747378
 AudioSource:
   m_ObjectHideFlags: 0
