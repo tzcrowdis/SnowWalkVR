@@ -9,12 +9,15 @@ public class SnowBall : MonoBehaviour
     public AudioClip breakSound;
     private AudioSource audioSource;
     private Rigidbody rb;
+    private ParticleSystem snowParticleSystem;
     private void Start()
     {
         // TODO: pick up sound effect
 
         rb = GetComponent<Rigidbody>();
         audioSource = GetComponent<AudioSource>();
+
+        snowParticleSystem = GetComponent<ParticleSystem>();
     }
 
     public void setSnowballHover(bool setValue)
@@ -36,6 +39,9 @@ public class SnowBall : MonoBehaviour
 
         if (rb.velocity.magnitude > breakThreshold && !collision.collider.CompareTag("Player"))
         {
+            // Play particle system
+            snowParticleSystem.Play();
+
             // Play break sound
             audioSource.clip = breakSound;
             audioSource.pitch = Random.Range(0.8f, 1.2f);
@@ -49,9 +55,6 @@ public class SnowBall : MonoBehaviour
             // Destroy after sound effect is done
             Destroy(gameObject, 1f);
         }
-            
-
-        // TODO: spawn snow particles at point of collision
 
         // TODO: decal on object collided with
     }

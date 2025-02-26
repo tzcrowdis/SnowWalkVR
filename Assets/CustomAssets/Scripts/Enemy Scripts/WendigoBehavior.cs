@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.AI.Navigation;
 using Unity.VisualScripting.FullSerializer;
-using UnityEditor.Animations;
+//using UnityEditor.Animations;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -11,7 +11,7 @@ public class WendigoBehavior : MonoBehaviour
     NavMeshAgent agent;
     NavMeshSurface surface;
 
-    public AnimatorController wendigoAnimController;
+    //public AnimatorController wendigoAnimController;
     public Animator wendigoAnimator;
 
     public bool walking;

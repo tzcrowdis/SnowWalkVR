@@ -1,7 +1,6 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
+using System.Security.Cryptography;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.InputSystem;
 using UnityEngine.XR.Interaction.Toolkit;
 
@@ -14,26 +13,17 @@ public class HandPhysics : MonoBehaviour
     private Collider[] handColliders;
     private bool isSnapTurning = false;
     public InputActionReference snapTurnAction;
-    
-    private float smoothFactor = 30f;
-    //the connecting joint, made in runtime.
-    [HideInInspector] public ConfigurableJoint handToBodyJoint;
-
-    //the player rigidbody, assigned in the inspector
-    [SerializeField] private Rigidbody playerRB;
 
     //The controller interactor
     private XRDirectInteractor interactor;
-    [SerializeField] private Transform playerT;
+    public CharacterController characterController;
 
-
-
-
-
+    private Vector3 lastPlayerPosition;
 
     // Start is called before the first frame update
     void Start()
     {
+
         //Get rigidbody
         rb = GetComponent<Rigidbody>();
 
@@ -120,19 +110,30 @@ public class HandPhysics : MonoBehaviour
     {
         if (isSnapTurning)
         {
+            rb.isKinematic = true;
             transform.SetPositionAndRotation(XRControllerTransform.position, XRControllerTransform.rotation);
         }
         else
         {
+            rb.isKinematic = false;
+        }
 
+    }
+
+    void FixedUpdate()
+    {
+        if (!isSnapTurning)
+            {
+
+
+            
             // Calculate the desired velocity to reach the XRControllerTransform position
             Vector3 direction = XRControllerTransform.position - transform.position;
-            rb.velocity = direction / Time.deltaTime;
+            rb.velocity = direction / Time.fixedDeltaTime;
 
 
             // Calculate the desired angular velocity to reach the XRControllerTransform rotation
-            Quaternion targetRotation = XRControllerTransform.rotation;
-            Quaternion rotationDelta = targetRotation * Quaternion.Inverse(rb.rotation);
+            Quaternion rotationDelta = XRControllerTransform.rotation * Quaternion.Inverse(transform.rotation);
             rotationDelta.ToAngleAxis(out float angle, out Vector3 axis);
 
             // Normalize the angle to the range [-180, 180] to avoid flips
@@ -141,7 +142,8 @@ public class HandPhysics : MonoBehaviour
                 angle -= 360f;
             }
 
-            rb.angularVelocity = (angle * axis) * Mathf.Deg2Rad / Time.deltaTime;
-        }
+            rb.angularVelocity = (angle * axis) * Mathf.Deg2Rad / Time.fixedDeltaTime;
+
+            }
     }
 }

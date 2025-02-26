@@ -784,8 +784,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4435679992768329689}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.2631297, y: 0.24961695, z: 0.10400835, w: 0.9260866}
-  m_LocalPosition: {x: 0.3, y: 0.86143994, z: 0.2}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.752, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -838,7 +838,7 @@ Rigidbody:
   m_ImplicitTensor: 1
   m_UseGravity: 0
   m_IsKinematic: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_Constraints: 0
   m_CollisionDetection: 2
 --- !u!114 &2238740281022490072
@@ -1761,8 +1761,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7306930566995257087}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.28049284, y: -0.21522962, z: -0.055368435, w: 0.93377423}
-  m_LocalPosition: {x: -0.3, y: 0.86143994, z: 0.2}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.951, y: 0.722, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1815,7 +1815,7 @@ Rigidbody:
   m_ImplicitTensor: 1
   m_UseGravity: 0
   m_IsKinematic: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_Constraints: 0
   m_CollisionDetection: 2
 --- !u!114 &5147956995694356498
@@ -1968,7 +1968,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8185257837699733315}
-  - component: {fileID: 8554002802166529816}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -1995,19 +1994,6 @@ Transform:
   - {fileID: 2010243025148234203}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8554002802166529816
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7713462349611939976}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 06562d9c3421729469d6eacdfd5df558, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  XRPlayerTransform: {fileID: 0}
 --- !u!1 &7844918144920154791
 GameObject:
   m_ObjectHideFlags: 0
