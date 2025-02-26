@@ -12,7 +12,6 @@ public class SnowBall : MonoBehaviour
     private ParticleSystem snowParticleSystem;
     private void Start()
     {
-        // TODO: pick up sound effect
 
         rb = GetComponent<Rigidbody>();
         audioSource = GetComponent<AudioSource>();
