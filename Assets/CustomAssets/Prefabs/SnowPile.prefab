@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 349936976739739259}
   - component: {fileID: 4891346734671360341}
   - component: {fileID: 5481680145170619275}
+  - component: {fileID: 2467740971492669533}
   m_Layer: 0
   m_Name: SnowPile
   m_TagString: Untagged
@@ -212,6 +213,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   snowballPrefab: {fileID: 7742963745875129551, guid: 19d46fd36ba988740bf41f338b86d4e0, type: 3}
   interactionManager: {fileID: 0}
+--- !u!114 &2467740971492669533
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2027483331072736338}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e3fdca004f2d45fe8abbed571a8abd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_OverrideArea: 0
+  m_Area: 0
+  m_OverrideGenerateLinks: 0
+  m_GenerateLinks: 0
+  m_IgnoreFromBuild: 1
+  m_ApplyToChildren: 0
+  m_AffectedAgents: ffffffff
 --- !u!1001 &939662242339218353
 PrefabInstance:
   m_ObjectHideFlags: 0
