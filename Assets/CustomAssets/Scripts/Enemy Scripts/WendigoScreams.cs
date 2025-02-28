@@ -20,7 +20,7 @@ public class WendigoScreams : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Player")
+        if (other.tag == "Player" && !vocal.isPlaying)
             vocal.PlayOneShot(closeScreams[Random.Range(0, closeScreams.Length)]);
     }
 }
