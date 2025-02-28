@@ -13,6 +13,7 @@ public class StrangeTrees : MonoBehaviour
     public float frequency = 1;
     public float propogationSpeed = 1;
     float time = 0;
+    public float timeToActNormal;
 
     bool wiggle = true;
     
@@ -34,13 +35,16 @@ public class StrangeTrees : MonoBehaviour
     {
         // tree follows player
         if (Vector3.Distance(player.position, transform.position) > spawnDistance)
-        {
-            spawnAngle = Random.Range(0f, 2 * Mathf.PI); // TODO: set range to behind the player?
-            transform.position = player.position + spawnDistance * new Vector3(Mathf.Cos(spawnAngle), 0f, Mathf.Sin(spawnAngle));
-        }
+            MovePosition();
 
         if (wiggle)
             Wiggle();
+    }
+
+    void MovePosition()
+    {
+        spawnAngle = Random.Range(0f, 2 * Mathf.PI); // TODO: set range to behind the player?
+        transform.position = player.position + spawnDistance * new Vector3(Mathf.Cos(spawnAngle), 0f, Mathf.Sin(spawnAngle));
     }
 
     void OnBecameInvisible()
@@ -52,14 +56,12 @@ public class StrangeTrees : MonoBehaviour
     {
         StartCoroutine(ActNormal());
     }
-
     
     public IEnumerator ActNormal()
     {
         // delay
         float t = 0;
-        float delay = 1f;
-        while (t < delay)
+        while (t < timeToActNormal)
         {
             t += Time.deltaTime;
             yield return null;
@@ -67,23 +69,6 @@ public class StrangeTrees : MonoBehaviour
 
         // snap back from wiggle position
         wiggle = false;
-
-        // TODO: try lerping the amplitude
-
-        // NOTE: this lags the game HAAAARD (need to optimize mesh vertices???)
-        /*
-        t = 0;
-        float speed = 1;
-        
-        while (t < 1)
-        {
-            for (var i = 0; i < vertices.Length; i++)
-                vertices[i] = Vector3.Lerp(mesh.vertices[i], ogVertices[i], speed * t);
-            
-            t += Time.deltaTime;
-            yield return null;
-        }
-        */
 
         mesh.vertices = ogVertices;
         mesh.RecalculateBounds();
@@ -108,5 +93,11 @@ public class StrangeTrees : MonoBehaviour
 
         mesh.vertices = vertices;
         mesh.RecalculateBounds();
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Player")
+            MovePosition();
     }
 }

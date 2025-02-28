@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/CustomAssets/Scenes/SnowWalk/SnowWalk.unity
+    guid: a0846e3b81b450445a69d8d88e692c70
+  - enabled: 0
     path: Assets/VRTemplateAssets/Scenes/SampleScene.unity
     guid: 55daccc09a3b69647bbab145b54a3ab3
   m_configObjects:

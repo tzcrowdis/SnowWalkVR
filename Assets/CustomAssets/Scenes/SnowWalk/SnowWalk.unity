@@ -521,8 +521,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameTime: 0
   actOneStartTime: 0
-  actTwoStartTime: 0.25
-  actThreeStartTime: 0.3
+  actTwoStartTime: 5
+  actThreeStartTime: 10
   player: {fileID: 1435398309}
   strangeTreePrefab: {fileID: 8068747200081088144, guid: 8acef365e9671524e9d1ff3e19d8f95b, type: 3}
   bonfirePrefab: {fileID: 4916115897255567041, guid: 78b720a83d3afb347a0a401e6a345c69, type: 3}
@@ -697,7 +697,7 @@ PrefabInstance:
       objectReference: {fileID: 599488742}
     - target: {fileID: 8496758285482414015, guid: 6f67e6af761717447b1020fe038b507f, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -778,7 +778,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4642746822019702471, guid: 26dd8659e34ea9d429fffab89c2043c0, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9085881655069128102, guid: 26dd8659e34ea9d429fffab89c2043c0, type: 3}
       propertyPath: m_Enabled
