@@ -5,6 +5,7 @@ using UnityEngine;
 public class WendigoSounds : MonoBehaviour
 {
     List<AudioClip> walking = new List<AudioClip>();
+    [SerializeField] AudioClip distantScream;
     AudioSource[] sources;
 
     public float timeBetweenSteps;
@@ -23,11 +24,13 @@ public class WendigoSounds : MonoBehaviour
                 walking.Add(Resources.Load($"SnowWalking/Footsteps_Snow_Walk_{i}") as AudioClip);
         }
 
+        
         sources = GetComponents<AudioSource>();
 
-        sources[1].Play();
+        sources[1].PlayOneShot(distantScream);
+        
     }
-
+    
     // TODO rework for 4 legs
 
     void Update()
