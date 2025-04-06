@@ -521,8 +521,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameTime: 0
   actOneStartTime: 0
-  actTwoStartTime: 5
-  actThreeStartTime: 10
+  actTwoStartTime: 0.1
+  actThreeStartTime: 0.2
   player: {fileID: 1435398309}
   strangeTreePrefab: {fileID: 8068747200081088144, guid: 8acef365e9671524e9d1ff3e19d8f95b, type: 3}
   bonfirePrefab: {fileID: 4916115897255567041, guid: 78b720a83d3afb347a0a401e6a345c69, type: 3}

@@ -109,9 +109,6 @@ PrefabInstance:
       addedObject: {fileID: 2070363408677622628}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 4d35e5cfa98419946b09660c4d62c0f1, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 2958052548226951785}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 4d35e5cfa98419946b09660c4d62c0f1, type: 3}
-      insertIndex: -1
       addedObject: {fileID: -3474008439044207372}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 4d35e5cfa98419946b09660c4d62c0f1, type: 3}
       insertIndex: -1
@@ -555,6 +552,11 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!137 &8224441059652916965 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 958056822297386008, guid: 4d35e5cfa98419946b09660c4d62c0f1, type: 3}
+  m_PrefabInstance: {fileID: 9180770406755404541}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &8334421124647368620 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 4d35e5cfa98419946b09660c4d62c0f1, type: 3}
@@ -616,6 +618,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wendigoAnimator: {fileID: 1718639604612982480}
+  skin: {fileID: 8224441059652916965}
   walking: 0
   walkSpeed: 3.5
   sprintSpeed: 7
@@ -623,7 +626,7 @@ MonoBehaviour:
   circlingDestination: {fileID: 0}
   testChargeCountLimit: 3
   testChargeDistance: 8
-  attackDistance: 1
+  attackDistance: 2
 --- !u!65 &-8237269589730646272
 BoxCollider:
   m_ObjectHideFlags: 0

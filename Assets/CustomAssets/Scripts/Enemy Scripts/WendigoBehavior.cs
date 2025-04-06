@@ -14,6 +14,8 @@ public class WendigoBehavior : MonoBehaviour
     //public AnimatorController wendigoAnimController;
     public Animator wendigoAnimator;
 
+    public Renderer skin;
+
     public bool walking;
     public float walkSpeed;
     public float sprintSpeed;
@@ -49,6 +51,8 @@ public class WendigoBehavior : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         surface = GameObject.Find("Wendigo Navmesh Surface").GetComponent<NavMeshSurface>();
         //agent.enabled = false;
+
+        skin.enabled = false;
 
         prey = GameObject.Find("XR Origin (XR Rig)").transform; // couldn't do from unity editor for some reason
         preyObstacle = prey.GetComponent<NavMeshObstacle>();
@@ -101,7 +105,7 @@ public class WendigoBehavior : MonoBehaviour
                 break;
         }
 
-        //Debug.Log(state);
+        Debug.Log(state);
     }
 
     void Spawning()
@@ -116,13 +120,19 @@ public class WendigoBehavior : MonoBehaviour
 
     void Circling()
     {
+        // TESTING
+        preyObstacle.radius = preyObstacleRadius;
+        skin.enabled = false;
+        agent.speed = sprintSpeed * (testChargeCount + 1) * 2;
+        agent.stoppingDistance = 5f;
+
+
         // walk towards position behind players head
         agent.destination = prey.position - circlingRadius * prey.forward;
-        agent.stoppingDistance = 0.1f;
+        //agent.stoppingDistance = 0.1f;
 
         wendigoAnimator.SetBool("Walking", true);
-        //agent.speed = walkSpeed;
-        agent.speed = sprintSpeed;
+        //agent.speed = sprintSpeed;
 
         // if behind player -> charge or test charge 
         if (WendigoAtDestination())
@@ -139,6 +149,8 @@ public class WendigoBehavior : MonoBehaviour
 
     void TestCharges()
     {
+        skin.enabled = true;
+        
         agent.destination = prey.position;
         agent.stoppingDistance = testChargeDistance;
 
@@ -155,6 +167,8 @@ public class WendigoBehavior : MonoBehaviour
 
     void Charge()
     {
+        skin.enabled = true;
+        
         agent.destination = prey.position;
         agent.stoppingDistance = attackDistance;
 
